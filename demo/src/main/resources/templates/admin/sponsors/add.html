@@ -1,0 +1,165 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+<th:block th:include="~{admin/layouts/master::head('Admin - Panel')}" />
+<link rel="stylesheet"
+	th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.min.css}" />
+</head>
+<body>
+
+	<div id="page-container"
+		class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+		<th:block th:replace="~{admin/layouts/master::header}" />
+
+		<!-- Main Container -->
+		<main id="main-container"> <!-- Hero -->
+		<div class="bg-body-light">
+			<div class="content content-full">
+				<div
+					class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+					<h1 class="flex-sm-fill h3 my-2" th:text="#{add.sponsor}">
+						</h1>
+		</div>
+			</div>
+		</div>
+		<!-- END Hero --> <!-- Page Content -->
+		<div class="content">
+			<div class="block">
+				<div class="block-content block-content-full">
+					<!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+					<!-- <table
+						class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+						<thead>
+							<tr>
+								<th class="text-center" style="width: 80px;">ID</th>
+								<th>Description</th>
+								<th class="d-none d-sm-table-cell" style="width: 30%;">Logo</th>
+								<th class="d-none d-sm-table-cell" style="width: 15%;">Name</th>
+								<th class="d-none d-sm-table-cell" style="width: 15%;">URL</th>
+								<th style="width: 1%;">#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="sponsor:${sponsors}">
+								<td class="text-center font-size-sm" th:text="${sponsor.id}"></td>
+								<td class="font-w600 font-size-sm" th:text="${sponsor.description}"></td>
+								<td class="d-none d-sm-table-cell font-size-sm"
+									th:text="${sponsor.logo}"></td>
+								<td class="d-none d-sm-table-cell" th:text="${sponsor.name}"></td>
+									<td class="d-none d-sm-table-cell" th:text="${sponsor.url}"></td>
+								<td>
+									<div class="btn-group">
+
+										<a href="javascript:void(0);" type="button"
+											class="btn btn-sm btn-light js-tooltip-enabled bg-white ban"
+											data-toggle="tooltip" title="" data-original-title="Ban"
+											th:data-url="@{'/admin/sponsors/sponsors/' + ${sponsor.id} + '/ban'}">
+											<i class="fa fa-fw fa-times"></i>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table> -->
+
+
+					<form th:action="@{/admin/sponsors/sponsors}" method="post"
+						enctype="multipart/form-data" th:object="${sponsor}">
+						<div class="row push">
+							<div class="col-lg-4"></div>
+							<div class="col-lg-8 col-xl-5">
+
+								<div class="form-group">
+									<label for="example-email-input" th:text="#{sponsor.name}"></label><input
+										type="text" class="form-control" name="name"
+										th:value="${sponsor.name}" id="name" th:placeholder="#{Name.Input}">
+								</div>
+								<div class="form-group">
+									<label class="d-block" for="LOGO" th:value="${sponsor.logo}"></label>
+									<input type="file" id="logo" name="logo">
+								</div>
+								<div class="form-group">
+									<label for="example-textarea-input" th:text="#{sponsor.description}"></label>
+									<textarea class="form-control" id="example-textarea-input"
+										name="description" rows="4"
+										th:placeholder="#{Description.content}"
+										th:value="${sponsor.description}"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="example-email-input" th:text="#{sponsor.url}"></label> <input type="text"
+										class="form-control" name="url" th:value="${sponsor.url}"
+										id="url" th:placeholder="#{URL.Input}">
+								</div>
+
+							</div>
+
+						</div>
+						<div class="row items-push">
+							<div class="col-lg-7 offset-lg-4">
+								<button type="submit" class="btn btn-primary" th:text="#{sponsor.submit}"></button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END Page Content --> </main>
+		<!-- END Main Container -->
+
+		<th:block th:replace="~{admin/layouts/master::footer}" />
+	</div>
+	<!-- END Page Container -->
+
+	<th:block th:include="~{admin/layouts/master::scripts}" />
+
+	<script
+		th:src="@{/admin/js/plugins/datatables/jquery.dataTables.min.js}"></script>
+	<script
+		th:src="@{/admin/js/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/admin/js/plugins/datatables/buttons/dataTables.buttons.min.js}"></script>
+	<script
+		th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+	<script th:src="@{/admin/js/plugins/sweetalert2/swal.js}"></script>
+	<!-- <script th:src="@{/admin/js/plugins/sweetalert2/swal2.js}"></script> -->
+	<script>
+    $(document).ready(function () {
+        $('.js-dataTable-full-pagination').DataTable();
+        $(document).on("click", ".ban", function () {
+            // TODO: add code to remove the ban to a user.
+            var $this = $(this);
+        
+            Swal.fire({
+            	  title: 'Are you sure?',
+            	  text: "You want to delete this case",
+            	  type: 'warning',
+            	  showCancelButton: true,
+            	  confirmButtonColor: '#3085d6',
+            	  cancelButtonColor: '#d33',
+            	  confirmButtonText: 'Yes, delete it!'
+            	}).then((result) => {
+            	  if (result.value) {
+            		  $.ajax({
+                          url: $this.data("url"),
+                          method: "patch",
+                          success: function (data) {
+                              if (!!data) {
+                            	  Swal.fire(
+                                	      'Deleted!',
+                                	      'Your case has been deleted.',
+                                	      'success'
+                                	    );
+                              }
+                          }
+                      });
+            	    
+            	  }
+            	})
+        
+        });
+    });
+</script>
+</body>
+</html>
+!

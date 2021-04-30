@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="~{layouts/master::head('Crowd Donating | Home')}" />
+<link th:href="@{/css/shortcodes/blog.css}" rel="stylesheet">
+</head>
+<body id="top" class="has-header-search">
+	<th:block th:replace="~{layouts/master::header}" />
+
+	<div class="charity-main-wrapper">
+		<div class="charity-subheader-two">
+			<span class="charity-footer-transparent"></span>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="charity-page-title">
+							<h1 th:text="#{event.events}"></h1>
+						</div>
+						<ul class="charity-breadcrumb">
+							<li><a th:href="@{/events}" th:text="#{event.event}"></a></li>
+							<li class="active" th:text="#{event.details}"></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="charity-main-content">
+
+			<!--// Main Section \\-->
+			<div class="charity-main-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<figure class="charity-event-thumb">
+								<img th:src="@{'/images/event/' + ${event.image}}" alt=""
+									style="height: 350px; width: 100%" />
+							</figure>
+						</div>
+						<div class="col-md-12">
+							<div class="charity-event-rich-editor">
+								<h3>
+									<a th:href="@{'/events/' + ${event.id}}"
+										th:text="${event.title}"></a>
+								</h3>
+								<hr />
+							</div>
+
+							<ul class="charity-event-option-two">
+								<li><i class="fa fa-calendar-o"></i>
+									<h6 th:text="#{event.date}"></h6>
+									<p
+										th:text="${#calendars.format(event.plannedDate, 'MMM dd, yyyy')}"></p>
+								</li>
+								<li><i class="fa fa-institution"></i>
+									<h6 th:text="#{association.name}"></h6>
+									<p th:text="${event.association.name}"></p></li>
+							</ul>
+							<div class="charity-countdown">
+								<span class="countdown-transparent"></span>
+								<div id="charity-countdown" th:data-date="${event.plannedDate}"></div>
+								<a href="javascript:void(0);" class="charity-join-btn"
+									th:text="#{event.join}"></a>
+							</div>
+							<div class="charity-event-rich-editor">
+								<h2 class="charity-section-heading"
+									th:text="#{event.description}"></h2>
+								<blockquote class="display-block" th:text="${event.description}"></blockquote>
+							</div>
+
+
+							<div class="charity-tags-wrap">
+								<div class="charity-post-tags">
+									<div class="charity-tags">
+										<span th:text="#{tag.tags}"></span>
+									</div>
+									<div class="charity-blog-social">
+										<form th:action="@{'/events/' + ${event.id}}"
+											th:method="delete">
+											
+												<a th:href="@{'/events/add'}"
+												class="btn btn-main mr-6" th:text="#{crud.add}"></a>
+											<a th:href="@{'/events/update/' + ${event.id}}"
+												class="btn btn-main mr-6" th:text="#{crud.update}"></a>
+											<button th:type="submit" class="btn btn-main mr-6"
+												onclick=" return confirm('Are you sure you want to Remove?');"
+												th:text="#{crud.delete}"></button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--// Main Section \\-->
+
+
+
+		</div>
+	</div>
+
+
+	<th:block th:replace="~{layouts/master::footer}" />
+	<th:block th:include="~{layouts/master::js}" />
+</body>
+</html>

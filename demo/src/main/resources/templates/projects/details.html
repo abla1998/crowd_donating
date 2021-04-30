@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+  <link rel="stylesheet" th:href="@{/css/shortcodes/blog.css}"/>
+  <link rel="stylesheet" th:href="@{/admin/js/plugins/sweetalert2/sweetalert2.min.css}"/>
+</head>
+<body id="top" class="has-header-search">
+<div class="charity-main-wrapper">
+  <th:block th:include="~{layouts/master::header}"/>
+
+  <div class="charity-subheader-two">
+    <span class="charity-footer-transparent"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="charity-page-title"><h1 th:text="#{cause.details}"></h1></div>
+          <ul class="charity-breadcrumb">
+            <li><a th:href="@{/}" th:text="#{home}"></a></li>
+            <li class="active" th:text="#{cause.details}"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="charity-main-content">
+    <!--// Main Section \\-->
+    <div class="charity-main-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="charity-rich-editor charity-cause-detail mb-0">
+              <figure class="charity-cause-thumb">
+                <img th:src="@{'/images/projects/' + ${project.image}}" alt="">
+              </figure>
+              <h3 th:text="${project.name}"></h3>
+              <ul class="charity-cause-options">
+                <li>
+                  <i class="fa fa-clock-o"></i>
+                  <h6 th:text="#{cause.deadLine}"></h6>
+                  <span th:text="${#calendars.format(project.deadLine,'MMM dd, yyyy')}"></span>
+                  <!--<span>19 days left</span>-->
+                </li>
+                <li>
+                  <i class="fa fa-heartbeat"></i>
+                  <h6 th:text="#{cause.donations}"></h6>
+                  <span th:text="${project.nbreDonations}"></span>
+                </li>
+                <li></li>
+              </ul>
+              <div class="charity-cause-donate">
+                <div class="skillst">
+                  <h6><span th:text="#{cause.raised}"></span><span th:text="| : ${project.amountRaised} MAD|"></span></h6>
+                  <h6><span th:text="#{cause.goal}"></span><span th:text="| : ${project.amount} MAD|"></span></h6>
+                  <div class="progressbar1"
+                       th:data-width="${#numbers.formatDecimal(project.percentageRaised, 0, 2)}"
+                       th:data-target="${project.amount}">
+                  </div>
+                </div>
+                <a th:href="@{'/projects/' + ${project.slug} + '/donate'}" class="charity-plan-btn">
+                  <i class="fa fa-paypal"></i> <span th:text="#{cause.donate}"></span>
+                </a>
+                <ul class="charity-cause-social">
+                  <li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
+                  <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
+                  <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+                  <li><a href="https://www.youtube.com/" class="fa fa-youtube"></a></li>
+                  <li><a href="https://www.vimeo.com/" class="fa fa-vimeo"></a></li>
+                </ul>
+              </div>
+              <div th:text="${project.description}" class="display-inline-block width-100"></div>
+              <h2 class="charity-section-heading mt-24 mb-24" th:text="#{documentation}"></h2>
+              <div th:each="file :${project.files}">
+                <th:block th:switch="${file.type}">
+                  <div th:case="'mp4'">
+                    <video controls>
+                      <source th:src="@{'/files/cases/' + ${file.path}}" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <div th:case="'png'">
+                    <img th:src="@{'/files/cases/' + ${file.path}}" alt="">
+                  </div>
+                  <div th:case="'jpg'">
+                    <img th:src="@{'/files/cases/' + ${file.path}}" alt="">
+                  </div>
+                  <div th:case="'jpeg'">
+                    <img th:src="@{'/files/cases/' + ${file.path}}" alt="">
+                  </div>
+                  <div th:case="'pdf'">
+                    <object th:data="@{'/files/cases/' + ${file.path}}" type="application/pdf" class="object-embed">
+                      <a th:href="@{'/files/cases/' + ${file.path}}" target="_blank" class="link"
+                         th:text="${#strings.substring(file.path, #strings.indexOf(file.path, '_') + 1)}"></a>
+                    </object>
+                  </div>
+                  <div th:case="*">
+                    <a th:href="@{'/files/cases/' + ${file.path}}" target="_blank" class="link"
+                       th:text="${#strings.substring(file.path, #strings.indexOf(file.path, '_') + 1)}"></a>
+                  </div>
+                </th:block>
+              </div>
+            </div>
+            
+
+            <h2 class="charity-section-heading" th:text="${project.association.name}"></h2>
+            <div class="charity-admin-post">
+              <figure>
+                <a href="404.html">
+                  <img th:src="@{'/images/users/' + ${project.association.avatar}}" alt="">
+                </a>
+                <figcaption>
+                  
+                </figcaption>
+              </figure>
+              <div class="charity-admin-post-text">
+                <p th:text="${project.association.description}"></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--// Main Section \\-->
+
+  </div>
+</div>
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+<script th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+<script th:if="${(param.success != null) and (param.success[0] == 'true')}">
+    Swal(
+        'Good job!',
+        'Your donation have been sent successfully!',
+        'success'
+    );
+</script>
+</body>
+</html>

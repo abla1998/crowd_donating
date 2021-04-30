@@ -1,0 +1,905 @@
+body {
+    direction: rtl;
+}
+
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: right;
+}
+
+.charity-strip-social li, .charity-strip-info li, .charity-strip-info li i, .charity-logo, .navbar, .navbar-nav > li, .charity-left-section, .charity-cause-category i, .charity-cause-category ul li,
+.banner-cause-box, .charity-classic-btn, .charity-cause-category h5, .charity-blog-grid figcaption time, .charity-grid-options li, .charity-grid-options li i, .charity-team-medium figure, .charity-event-medium figure, .comment-list li figure,
+.charity-event-option li i, .charity-testimonials figure, .widget_recent_news figure, .widget_categories ul li:before, .charity-copyright-section p, .charity-copyright-social li,
+.charity-list-style-one li, .charity-about-btn, .charity-section-heading, .charity-list-style-two li, .charity-blog-options, .charity-widget-title, .widget_events ul li time, .charity-cause-options li h6,
+.widget_archive ul li, .widget_archive ul li a, .charity-tags span, .charity-tags a, .charity-blog-social span, .charity-blog-social ul li, .charity-admin-post figure, .charity-cause-options > li,
+.charity-admin-social, .charity-admin-social li, .charity-related-blog figure figcaption time, .charity-related-blog figure figcaption .charity-blog-comment li, charity-cause-options,
+.charity-blog-comment li a i, .comments-title, form p, .comment-respond form p input[type="submit"], .charity-featured-text .skillst span, .widget_featured_causes ul li figure, .charity-comment-btn,
+.charity-cause-donate > .skillst > h6:first-child, .charity-plan-btn, .charity-event-option-two, .charity-event-option-two li, .charity-event-option-two li h6, .charity-event-gallery ul li,
+.charity-event-option-two li p, .charity-donation-section ul li, .charity-volunteer-form form ul li label, .charity-volunteer-form form ul li, .charity-volunteer-form form ul li input[type="submit"],
+.widget_contact_info ul li i, .widget_gallery ul li, .charity-twitter-feeds ul li > a, .charity-cause-modern-skill .skillst a i, .charity-cause-modern-skill .skillst > span, .charity-readmore-btn,
+.charity-donate-btn i, .charity-cause-list ul li figure, .charity-sermon-list-option > li, .charity-sermon-list-option > li h6, .charity-sermon-list-option > li span, .charity-related-sermon ul li figure,
+.charity-comment-btn i, .charity-event-classic ul li figure, .charity-event-readmore-btn, .charity-event-classic-text ul li, .charity-shop-detail figure, .star-rating, .charity-select label,
+.add-to-cart, .add-to-cart i, .nav-tabs li, .chaity-contact-info, .chaity-contact-info li, .chaity-contact-info li h6, .charity-team-timeline li .charity-image, .charity-team-contactus ul li, .charity-join-btn,
+.charity-team-contactus ul li h5, .charity-team-contactus ul li a, .charity-services-campaign .skillst > span, .charity-shop-list ul li figure, .charity-tags, .charity-tags span, .charity-tags a, .countdown-row,
+.countdown-section, .charity-event-grid-text ul li, .charity-event-grid ul li figure figcaption span, .charity-event-grid ul li figure figcaption span time, .charity-event-grid ul li figure figcaption,
+.charity-filterable ul li, .charity-related-blog ul li figure figcaption ul, .charity-grid-options, .charity-project-detail figure, .charity-social li, .charity-sermon-detail figure,
+.charity-sermon-list ul li figure, .charity-sermon-list-option > li a, .charity-sermon-btn {
+    float: right;
+}
+
+.charity-strip-social, .charity-simple-btn, .charity-right-section, .charity-dropdown-menu > li.subdropdown-addicon > a:before, .charity-cause-category, .charity-event-rich-editor p,
+.cause-simplegrid-bottom span, .charity-copyright-social, .charity-aboutus-text p, .widget_gallery ul, .charity-cause-donate > .skillst > h6, .charity-cause-social, .charity-subheader-two .charity-breadcrumb,
+.charity-cause-modern-skill .skillst > span:last-child, .charity-sermon-social, .charity-sermon-player .jp-playlist ul li span, .charity-comment-btn:last-child, .charity-blog-social, .charity-blog-social ul,
+.charity-services-campaign .skillst > span:last-child, .charity-event-readmore-btn i {
+    float: left;
+}
+
+.banner-cause-box {
+    direction: rtl;
+}
+
+.switcher-style, .charity-partner-slider, .charity-prenxt-post, .jp-type-playlist, .charity-banner {
+    direction: ltr;
+}
+
+/*-- header--*/
+.charity-strip-social li {
+    margin: 16px 20px 13px 0;
+}
+
+.charity-strip-info li {
+    margin: 15px 0 14px 30px;
+    direction: ltr;
+}
+
+.charity-strip-info li i {
+    margin: 7px 0 0 15px;
+}
+
+.charity-simple-btn {
+    margin: 32px 4px 0 0;
+}
+
+.charity-dropdown-menu li a, .charity-megalist li a {
+    text-align: right;
+}
+
+.charity-dropdown-menu li:hover a:before, .charity-megalist li:hover a:before {
+    -webkit-transform: rotate(-270deg);
+    -moz-transform: rotate(-270deg);
+    -ms-transform: rotate(-270deg);
+    -o-transform: rotate(-270deg);
+    transform: rotate(-270deg);
+}
+
+.charity-dropdown-menu .charity-dropdown-menu {
+    left: auto;
+    right: 122%;
+}
+
+.charity-megamenu li h4 {
+    text-align: right;
+}
+
+.charity-classic-btn::before {
+    left: -5px;
+    right: auto;
+}
+
+.charity-classic-btn::after {
+    left: auto;
+    right: -5px;
+}
+
+/*content*/
+.charity-cause-category i {
+    margin: 0 0 0 20px;
+}
+
+.charity-grid-options li:last-child {
+    margin-left: 0;
+}
+
+.charity-grid-options li:first-child {
+    margin-left: 30px;
+}
+
+.charity-grid-options li i {
+    margin: 7px 0 0 14px;
+}
+
+.charity-grid-options {
+    margin: 0 22px 0 0;
+}
+
+.charity-team-medium figure ~ section {
+    border-right: 10px solid #202020;
+    border-left: none;
+    margin: 0 268px 0 0;
+}
+
+.charity-team-medium figure span {
+    left: -35px;
+    right: auto;
+}
+
+.charity-event-medium figure ~ section {
+    margin: 0 263px 0 0;
+}
+
+.charity-event-option li i {
+    margin: 7px 0 0 10px;
+}
+
+.bar-container .bar {
+    right: 0;
+    left: auto;
+}
+
+.bar-container .bar small {
+    left: -28px;
+    right: auto;
+}
+
+.bar-container .bar small:before {
+    border-bottom: 6px solid;
+    border-right: 6px solid transparent;
+    right: -6px;
+    left: auto;
+}
+
+.bar-container .bar small:after {
+    border-top: 6px solid;
+    border-right: 6px solid transparent;
+    right: -6px;
+    left: auto;
+}
+
+.charity-testimonials figure:before {
+    left: -10px;
+    right: auto;
+    border-radius: 100px 0 0 100px;
+}
+
+.charity-testimonials-wrap:before {
+    left: 0;
+    right: auto;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+/*sub-header*/
+.charity-breadcrumb li:before {
+    content: "\f104";
+    right: -3px;
+    top: 0;
+    left: auto;
+}
+
+/*about us*/
+.charity-list-style-one li {
+    padding: 0 28px 0 0;
+}
+
+.charity-list-style-one li:before {
+    right: 0;
+    left: auto;
+}
+
+.charity-section-heading {
+    width: auto;
+}
+
+.charity-list-style-two li {
+    padding: 0 28px 0 0;
+}
+
+.charity-list-style-two li i {
+    right: 0;
+}
+
+.charity-accordion .panel-heading .panel-title a.collapsed:before,
+.charity-accordion .panel-heading .panel-title a:before {
+    left: 30px;
+    right: auto;
+}
+
+.charity-accordion .panel-title a:after,
+.charity-accordion .panel-heading .panel-title a.collapsed:after {
+    right: 30px;
+    left: auto;
+}
+
+.charity-accordion .panel-heading .panel-title > a {
+    padding: 17px 59px 18px 15px;
+}
+
+.charity-partner-slider .slick-arrow-left.slick-arrow {
+    right: 93%;
+}
+
+/*blog detail*/
+.charity-blog-options ul li {
+    display: inline-block;
+    float: none;
+    margin: 0 0 0 5px;
+}
+
+blockquote {
+    border-right: 2px solid #edb542;
+    border-left: none;
+    background-position: right 20px top;
+    padding: 1px 33px 12px 26px;
+}
+
+.charity-tags span {
+    margin: 0 0 0 15px;
+}
+
+.charity-tags a {
+    margin: 0 0 0 4px;
+}
+
+.charity-blog-social span {
+    margin: 0 0 0 8px;
+}
+
+.charity-blog-social ul li {
+    margin: 0 15px 0 0;
+}
+
+.charity-blog-social ul {
+    padding: 1px 0 0;
+}
+
+.charity-admin-post figure:before {
+    left: 0;
+    right: auto;
+    border-radius: 100px 0 0 100px;
+}
+
+.charity-admin-post figure ~ .charity-admin-post-text {
+    margin: 0 110px 0 0;
+}
+
+.charity-admin-social li {
+    margin: 0 0 0 15px;
+}
+
+.charity-related-blog figure figcaption .charity-blog-comment li {
+    margin: 0 10px 0 0;
+}
+
+.charity-blog-comment li a i {
+    margin: 7px 0 0 10px;
+}
+
+.comment-list li figure:before {
+    right: auto;
+    left: -7px;
+    border-radius: 100px 0 0 100px;
+}
+
+.thumb-list {
+    padding: 23px 20px 23px 40px;
+}
+
+.comment-list figure ~ .text-holder {
+    margin: 0 88px 0 0;
+}
+
+.comment-reply-link {
+    left: -10px;
+    right: auto;
+}
+
+.comment-respond form p input[type="text"],
+.comment-respond form p input[type="email"] {
+    padding-right: 10px;
+}
+
+.charity-respond-full-form textarea {
+    padding: 11px 10px 0 0;
+}
+
+.charity-featured-text .bar-container .bar:after {
+    left: -5px;
+    right: auto;
+}
+
+.charity-featured-text .bar-container .bar:before {
+    left: -6px;
+    right: auto;
+}
+
+.comment-list .children {
+    padding-left: 0;
+    padding-right: 60px;
+}
+
+/*cause detail*/
+.charity-cause-options li i {
+    right: 0;
+    left: auto;
+}
+
+.charity-cause-options > li {
+    margin: 0 0 0 30px;
+    padding: 0 20px 0 0;
+}
+
+.charity-cause-options li h6 {
+    margin: 0 0 0 14px;
+}
+
+.charity-cause-social li {
+    margin: 0 11px 0 0;
+}
+
+.charity-event-option-two li i {
+    right: 0;
+    left: auto;
+}
+
+.charity-event-option-two li {
+    padding: 0 36px 0 0;
+}
+
+.charity-event-option-two li h6 {
+    margin: 0 0 0 26px;
+}
+
+/*donation page*/
+.donation-wrap:before {
+    left: auto;
+    right: 20px;
+}
+
+.charity-donation-section ul .add-amount .donation-wrap {
+    padding: 12px 45px 12px 30px;
+}
+
+.charity-donation-section ul .add-amount .donation-wrap span {
+    margin: 0 0 0 20px;
+}
+
+.charity-select-two:before {
+    left: 0;
+    right: auto;
+}
+
+.charity-select-two:after {
+    right: auto;
+    left: 10px;
+}
+
+/*header two*/
+.charity-header-two .charity-logo:before {
+    left: 0;
+    right: auto;
+}
+
+.charity-header-two .charity-logo:after {
+    left: -50px;
+    right: auto;
+    border-left: 50px solid transparent;
+    border-top: 100px solid #edb542;
+    border-right: none;
+}
+
+.charity-header-two .charity-logo {
+    text-align: right;
+}
+
+.widget_contact_info ul li i {
+    margin: 0 0 0 15px;
+}
+
+/*contact us*/
+.charity-contact-form form ul > .full-input {
+    left: 0;
+    right: auto;
+    padding: 0 15px 0 45px;
+}
+
+.charity-contact-form form ul li input[type="text"] {
+    padding-right: 10px;
+}
+
+.charity-contact-form form ul .full-input textarea {
+    padding-right: 9px;
+}
+
+.charity-twitter-feeds ul li > a:after {
+    left: -33px;
+    right: auto;
+    border-radius: 100px 0 0 100px;
+}
+
+.charity-twitter-feeds ul li h6 {
+    padding: 0 54px 0 0;
+}
+
+.charity-twitter-feeds ul li > a i {
+    right: 0;
+}
+
+/*cause modern*/
+.charity-cause-modern-skill .skillst a i {
+    margin: 7px 0 0 11px;
+}
+
+.charity-donate-btn i {
+    border-left: 1px solid #fff;
+    border-right: none;
+    padding: 10px 0 10px 9px;
+    margin: 0 0 0 12px;
+}
+
+.charity-cause-list ul li figure ~ .charity-cause-text {
+    margin: 0 230px 0 0;
+}
+
+.charity-cause-list ul li figure:before {
+    border-radius: 110px 0 0 110px;
+    right: auto;
+    left: -22px;
+}
+
+.charity-pagination > ul > li > .next:before {
+    border-radius: 100px 0 0 100px;
+    right: auto;
+    left: -6px;
+}
+
+.charity-pagination > ul > li > .previous:before {
+    border-radius: 0 100px 100px 0;
+    left: auto;
+    right: -6px;
+}
+
+/*sermon*/
+.charity-sermon-list-option > li {
+    padding: 0 28px 0 0;
+}
+
+.charity-sermon-list-option > li > i {
+    left: auto;
+    right: 0;
+}
+
+.charity-sermon-list-option > li h6 {
+    margin: 0 0 0 15px;
+}
+
+.charity-readmore-btn::before, .charity-readmore-btn:after {
+    left: 0;
+    right: auto;
+}
+
+.charity-readmore-btn:after {
+    right: 0;
+    left: auto;
+}
+
+.charity-sermon-social li {
+    margin: 0 0 0 11px;
+}
+
+.charity-sermon-detail-option li {
+    padding: 0 28px 0 0;
+}
+
+.charity-sermon-detail-option li i {
+    left: auto;
+    right: 0;
+}
+
+.charity-sermon-player .jp-playlist li.jp-playlist-current::before {
+    left: auto;
+    right: 32px;
+}
+
+.charity-sermon-player .jp-playlist li > div {
+    padding: 0 18px 0 0;
+}
+
+.charity-sermon-related-text {
+    margin: -140px 70px 0 0;
+}
+
+.charity-form-result form label:before {
+    left: 11px;
+    right: auto;
+}
+
+.charity-comment-btn i {
+    margin: 0 0 0 10px;
+    padding: 8px 0 9px 9px;
+    border-left: 1px solid #fff;
+    border-right: none;
+}
+
+.charity-sermon-detail figure ~ .charity-sermon-detail-text {
+    margin: 0 429px 0 0;
+    padding: 6px 30px 0 0;
+}
+
+.charity-sermon-list ul li figure {
+    padding: 20px 0 20px 20px;
+}
+
+.charity-sermon-list ul li figure:before {
+    right: auto;
+    left: 0;
+}
+
+.charity-sermon-list ul li figure ~ .charity-sermon-list-text {
+    margin: 0 240px 0 0;
+    padding: 0 30px 0 0;
+}
+
+.charity-sermon-list-option {
+    padding: 0 0 0 60px;
+}
+
+.charity-sermon-btn {
+    margin: 0 0 4px 15px;
+}
+
+/*events*/
+.charity-event-classic ul li figure:before {
+    left: auto;
+    right: 0;
+}
+
+.charity-event-classic ul li figure {
+    padding: 30px 30px 30px 0;
+}
+
+.charity-event-classic ul li figure ~ .charity-event-classic-text {
+    margin: 0 365px 0 0;
+    padding: 22px 30px 0 0;
+}
+
+.charity-event-classic ul li figure time:before {
+    right: 0;
+    left: auto;
+    border-right: 10px solid transparent;
+    border-left: none;
+}
+
+.charity-event-classic ul li figure time {
+    left: auto;
+    right: 20px;
+}
+
+.charity-event-classic-text ul li {
+    margin: 0 0 10px 20px;
+    padding: 2px 62px 3px 16px;
+}
+
+.charity-event-classic-text ul li i {
+    left: auto;
+    right: 15px;
+}
+
+.charity-event-classic-text ul li::before {
+    left: 0;
+    right: 43px;
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    -ms-transform: rotate(-15deg);
+    -o-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+}
+
+.charity-join-btn {
+    margin: 15px 9px 0 0;
+}
+
+.charity-event-grid-text {
+    padding: 23px 28px 30px 0;
+}
+
+.charity-event-grid-text ul li {
+    padding: 0 18px 0 0;
+    margin: 0 0 10px 15px;
+}
+
+.charity-event-grid-text ul li i:after {
+    right: -6px;
+    left: auto;
+    border-radius: 0 15px 15px 0;
+}
+
+.charity-event-grid-text ul li i {
+    right: 0;
+    left: auto;
+}
+
+.charity-event-grid ul li figure figcaption span time {
+    margin: 0 0 0 20px;
+}
+
+.charity-event-grid ul li figure figcaption span:before {
+    left: auto;
+    right: -5px;
+}
+
+.charity-event-grid ul li figure figcaption:before {
+    border-left: 28px solid transparent;
+    border-right: none;
+    left: -28px;
+    right: auto;
+}
+
+.charity-event-grid ul li figure figcaption:after {
+    right: auto;
+    left: -28px;
+}
+
+.charity-event-readmore-btn i {
+    border-left: none;
+    border-right: 1px solid #fff;
+    margin: 0 13px 0 0;
+    padding: 10px 10px 12px 0;
+}
+
+.charity-event-classic-text ul li:last-child {
+    margin-left: 0;
+}
+
+/*shop*/
+.charity-shop-detail figure:before {
+    left: auto;
+    right: 0;
+}
+
+.charity-shop-detail figure {
+    padding: 30px 30px 0 0;
+}
+
+.charity-shop-summery {
+    padding: 35px 30px 0 10px;
+}
+
+.star-rating {
+    margin: 0 0 16px 3px;
+}
+
+.add-to-cart i {
+    padding: 9px 0 9px 9px;
+    margin: 0 0 0 15px;
+    border-right: none;
+    border-left: 1px solid #fff;
+}
+
+.chaity-contact-info li > span, .chaity-contact-info > li > a {
+    margin: 0 19px 0 0;
+}
+
+.charity-team-timeline ul:before {
+    border-right: 4px solid #f1f1f1;
+    border-left: none;
+    left: auto;
+    right: 86px;
+}
+
+.charity-team-timeline ul li .charity-image span::before {
+    left: -42px;
+    right: auto;
+}
+
+.charity-team-timeline ul li .charity-image span {
+    left: -59px;
+    right: auto;
+}
+
+.charity-image i:after {
+    border-radius: 100px 0 0 100px;
+    right: auto;
+    left: -10px;
+}
+
+.charity-team-timeline ul li .charity-team-timeline-text {
+    margin: 0 133px 0 0;
+}
+
+.charity-team-contactus ul li {
+    padding: 18px 80px 14px 0;
+}
+
+.charity-team-contactus ul li i {
+    left: auto;
+    right: 30px;
+}
+
+.charity-team-contactus ul li h5 {
+    margin: 0 0 0 18px;
+}
+
+.charity-team-contactus ul li:last-child i {
+    left: auto;
+    right: 70px;
+}
+
+.charity-team-contactus ul li:last-child {
+    padding-right: 112px;
+    padding-left: 0;
+}
+
+.charity-team-contactus ul li:before {
+    left: 0;
+    right: auto;
+}
+
+.charity-services-video iframe {
+    padding: 30px 30px 30px 0;
+}
+
+.charity-services-video:before {
+    left: auto;
+    right: 0;
+}
+
+.charity-shop-list ul li figure:before {
+    right: auto;
+    left: 0;
+}
+
+.charity-shop-list ul li figure {
+    padding: 30px 0 30px 30px;
+}
+
+.charity-shop-list ul li figure ~ .charity-shop-list-text {
+    margin: 0 263px 0 0;
+}
+
+.charity-shop-list ul li figure span {
+    right: 10px;
+    left: auto;
+}
+
+.charity-shop-list ul li:hover figure span {
+    right: 0;
+    left: auto;
+}
+
+.star-rating > .star-rating-box {
+    right: 0;
+    left: auto;
+}
+
+.charity-shop-list-text .star-rating {
+    margin: 3px 0 26px 2px;
+}
+
+.star-rating::before, .star-rating-box:before {
+    left: auto;
+    right: 0;
+}
+
+.next.page-numbers > span i {
+    -webkit-transform: rotate(184deg);
+    -moz-transform: rotate(184deg);
+    -ms-transform: rotate(184deg);
+    -o-transform: rotate(184deg);
+    transform: rotate(184deg);
+}
+
+.previous.page-numbers > span i {
+    -webkit-transform: rotate(-184deg);
+    -moz-transform: rotate(-184deg);
+    -ms-transform: rotate(-184deg);
+    -o-transform: rotate(-184deg);
+    transform: rotate(-184deg);
+}
+
+.charity-shop-grid-text .star-rating::before {
+    right: 33%;
+    left: auto;
+}
+
+.charity-shop-grid-text .star-rating-box::before {
+    left: auto;
+    right: 49%;
+}
+
+/*project*/
+.charity-project-detail figure ~ .charity-project-detail-text {
+    margin: 0 555px 28px 0;
+}
+
+.charity-project-detail figure:before {
+    right: auto;
+    left: 0;
+}
+
+.charity-sermon-detail-option li h6 span, .charity-project-detail-text .charity-sermon-detail-option li h6 > a {
+    margin: 0 12px 0 0;
+}
+
+.charity-social li {
+    margin: 0 0 0 15px;
+}
+
+.charity-team-contactus ul li {
+    border-left: 1px solid #e5e5e5;
+    border-right: none;
+}
+
+/*contact*/
+.charity-contactus-text i:after {
+    left: -10px;
+    right: auto;
+    border-radius: 100px 0 0 100px;
+}
+
+/*side-bar*/
+.charity-main-content .widget_recent_news figure ~ section,
+.widget_events ul li time ~ .charity-events {
+    margin: 0 92px 0 0;
+}
+
+.charity-events > a i {
+    margin: 0 0 0 9px;
+}
+
+.widget_archive ul li {
+    padding: 0 21px 0 0;
+}
+
+.widget_archive ul li:before {
+    right: 0;
+    content: "\f104";
+    top: -7px;
+    left: auto;
+}
+
+.widget_featured_causes ul li figure ~ .charity-featured-text {
+    margin: 0 100px 0 0;
+}
+
+/*footer*/
+.charity-footer-newslatter form i {
+    left: 20px;
+    right: auto;
+}
+
+.charity-footer-title {
+    display: inline-block;
+}
+
+.charity-twitter-icon {
+    right: 0;
+}
+
+.widget_twitter ul li {
+    padding: 0 50px 30px 0;
+}
+
+.widget_recent_news figure:before {
+    border-radius: 100px 0 0 100px;
+    left: -8px;
+    right: auto;
+}
+
+.widget_recent_news figure ~ section {
+    margin: 2px 112px 0 0;
+}
+
+.widget_categories ul li:before {
+    margin: 0 0 0 11px;
+}
+
+.charity-copyright-social li {
+    margin: 0 25px 10px 0;
+}
+
+.charity-back-top {
+    right: auto;
+    left: -30px;
+}

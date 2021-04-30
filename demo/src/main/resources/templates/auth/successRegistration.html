@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:replace="~{layouts/master::header}"/>
+
+
+
+	<div class="charity-subheader-two">
+		<span class="charity-footer-transparent"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="charity-page-title">
+						<h1 th:text="#{registration}"></h1>
+					</div>
+					<ul class="charity-breadcrumb">
+						<li class="active" th:text="#{account.confirmation}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 mt-50">
+					<div class="row">
+
+						<div class="col-md-12">
+							<div class="charity-fancy-title">
+								<div class="charity-fancy-title-wrap">
+									<h2 th:text="#{verification}"></h2>
+								</div>
+								<span><h1 th:text="#{association.message}"></h1></span>
+								<br/><br>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+</body>
+</html>

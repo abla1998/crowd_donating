@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body class="has-header-search" id="top">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<section class="section-padding default-blog grid-blog">
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="tt-sidebar-wrapper" role="complementary">
+        <div class="widget widget_search">
+          <form class="search-form" method="get" role="search"
+                th:action="@{/sponsors/search}">
+            <input class="form-control" id="s" name="name" placeholder="Write any keywords"
+                   th:value="${name}" type="text" value="">
+            <button type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+
+        </div>
+        <!-- <div class="widget widget_categories">
+          <h3 class="widget-title">Types</h3>
+          <ul>
+            <li th:each="type:${types}">
+              <a th:href="@{'/cases/type/'+${type.id}}" th:text="${type.label}"></a>
+            </li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+
+    <!-- 		<div class="col-md-9">
+          <div class="row" th:if="${sponsors}">
+            <div class="col-md-6" th:each="sponsor:${sponsors}">
+              <article class="post-wrapper">
+                <div class="thumb-wrapper">
+                  <img th:src="@{'/images/sponsors/' + ${sponsor.logo}}"
+                    class="img-responsive" alt="">
+                  <div class="entry-header">
+                    <span class="posted-in"> <a href="#"
+                      th:text="${case.types[0].label}"></a>
+                    </span>
+                    <h2 class="entry-title">
+                      <a th:href="@{'/sponsors/' + ${sponsor.id}}"
+                        th:text="${sponsor.name}"></a>
+                    </h2>
+                  </div>
+                  <div class="author-thumb waves-effect waves-light">
+                    <a href="javascript:void(0);"> <img
+                      th:src="@{'/images/sponsors/' + ${sponsor.logo}}"
+                      alt="">
+                    </a>
+                  </div>
+                  <span class="post-comments-number"> <i
+                    class="fa fa-comments"></i><a href="#">25</a>
+                  </span>
+                </div>
+                <div class="entry-content">
+                  <p th:text="${#strings.substring(sponsor.description ,0 ,100)}"></p>
+                  <p th:text="${sponsor.description}"></p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6" th:each="sponsor:${sponsors}">
+
+
+          <div class="card mb-3">
+
+            <img alt="Card image cap"
+                 class="card-img-top"
+                 height="250" th:src="@{'/images/sponsors/' + ${sponsor.logo}}"/>
+            <div class="card-body">
+              <h5 class="card-title">
+                <a th:href="@{'/sponsors/' + ${sponsor.id}}" th:text="${sponsor.name}"></a>
+              </h5>
+              <p class="card-text">
+
+                <span th:text="#{sponsor.url}" ></span> <span th:text="${sponsor.url}"></span>
+                <span th:text="#{sponsor.description}"></span> <span th:text="${sponsor.description}"></span>
+              </p>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <!-- <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li th:each="p,status:${pages}" class="page-item"><a
+            th:href="@{/sponsors(page=${status.index})}"
+            th:text="${status.index}" class="page-link"></a></li>
+        </ul>
+      </nav> -->
+      <ul class="pagination post-pagination text-center mt-50">
+        <li><a class="waves-effect waves-light" th:href="@{/sponsors(page=${currentPage - 1})}"><i
+                class="fa fa-angle-left"></i></a>
+        <li class="page-item" th:each="p,status:${pages}">
+          <a th:href="@{/sponsors(page=${status.index + 1})}">
+            <span class="current waves-effect waves-light" th:text="${status.index + 1}"></span>
+          </a>
+        </li>
+        <li><a class="waves-effect waves-light" th:href="@{/sponsors(page=${currentPage + 1})}"><i
+                class="fa fa-angle-right"></i></a></li>
+      </ul>
+
+    </div>
+  </div>
+
+</section>
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+</body>
+</html>

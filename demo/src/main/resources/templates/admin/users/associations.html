@@ -1,0 +1,165 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <th:block th:include="~{admin/layouts/master::head('Admin - Panel')}"/>
+  <link rel="stylesheet" th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.min.css}"/>
+</head>
+<body>
+
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+  <th:block th:replace="~{admin/layouts/master::header}"/>
+
+  <!-- Main Container -->
+  <main id="main-container">
+
+    <!-- Hero -->
+    <div class="bg-body-light">
+      <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+          <h1 class="flex-sm-fill h3 my-2" th:text="#{associations}"></h1>
+        </div>
+      </div>
+    </div>
+    <!-- END Hero -->
+
+    <!-- Page Content -->
+    <div class="content">
+      <div class="block">
+        <div class="block-content block-content-full">
+          <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+          <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+            <thead>
+            <tr>
+              <th class="text-center" style="width: 1%;" th:text="#{association.id}"></th>
+              <th th:text="#{association.name}"></th>
+              <th class="d-none d-sm-table-cell" style="width: 30%;" th:text="#{association.email}" ></th>
+              <th class="d-none d-sm-table-cell" style="width: 1%;" th:text="#{association.state}"></th>
+              <th style="width: 1%;">#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="association:${associations}">
+              <td class="text-center font-size-sm" th:text="${association.id}"></td>
+              <td class="font-w600 font-size-sm" th:text="${association.name}"></td>
+              <td class="d-none d-sm-table-cell font-size-sm" th:text="${association.email}"></td>
+              <td class="d-none d-sm-table-cell">
+                <span class="badge badge-warning" th:if="${!association.enabled}">Not Valid</span>
+                <span class="badge badge-danger" th:if="${association.banned && association.enabled}">Banned</span>
+                <span class="badge badge-info" th:if="${!association.banned && association.enabled}">Active</span>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a th:href="@{'/association/profile/' + ${association.id}}" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white" data-toggle="tooltip"
+                     title="" data-original-title="View" target="_blank">
+                    <i class="fa fa-fw fa-eye"></i>
+                  </a>
+                  <a th:if="${!association.enabled}"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white validate"
+                     data-original-title="Validate" data-toggle="tooltip"
+                     href="javascript:void(0);" type="button"
+                     th:data-url="@{'/admin/users/associations/' + ${association.id} + '/validate'}">
+                    <i class="fa fa-fw fa-check"></i>
+                  </a>
+                  <!--<a th:if="${association.banned && association.enabled}"-->
+                     <!--class="btn btn-sm btn-light js-tooltip-enabled bg-white ban"-->
+                     <!--data-original-title="Validate" data-toggle="tooltip"-->
+                     <!--href="javascript:void(0);" type="button"-->
+                     <!--th:data-url="@{'/admin/users/associations/' + ${association.id} + '/validate'}">-->
+                    <!--<i class="fa fa-fw fa-heart"></i>-->
+                  <!--</a>-->
+                  <!--<a th:if="${!association.banned && association.enabled}"-->
+                     <!--href="javascript:void(0);" type="button"-->
+                     <!--class="btn btn-sm btn-light js-tooltip-enabled bg-white ban"-->
+                     <!--data-toggle="tooltip" title="" data-original-title="Ban"-->
+                     <!--th:data-url="@{'/admin/users/associations/' + ${association.id} + '/ban'}">-->
+                    <!--<i class="fa fa-fw fa-times"></i>-->
+                  <!--</a>-->
+
+
+                  <a th:if="${association.enabled}"
+                     href="javascript:void(0);" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled ban"
+                     data-toggle="tooltip" title="" data-original-title="Ban"
+                     th:data-url="@{'/admin/users/associations/' + ${association.id} + '/ban'}"
+                     th:data-state="${association.banned}">
+                    <i class="fa fa-fw fa-check" th:if="${association.banned}"></i>
+                    <i class="fa fa-fw fa-times" th:if="${!association.banned}"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- END Page Content -->
+
+  </main>
+  <!-- END Main Container -->
+
+  <th:block th:replace="~{admin/layouts/master::footer}"/>
+</div>
+<!-- END Page Container -->
+
+<th:block th:include="~{admin/layouts/master::scripts}"/>
+
+<script th:src="@{/admin/js/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/admin/js/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/admin/js/plugins/datatables/buttons/dataTables.buttons.min.js}"></script>
+<script th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('.js-dataTable-full-pagination').DataTable();
+        $(document).on("click", ".ban", function () {
+            var $this = $(this);
+            $.ajax({
+                url: $this.data("url"),
+                method: "patch",
+                data: {state: !$this.data("state")},
+                success: function (data) {
+                    var message = "";
+                    if (!!data) {
+                        message = "The user is now banned!";
+                        $this.children("i").removeClass("fa-times").addClass("fa-check");
+                        $this.closest("tr").find("td > span.badge")
+                            .removeClass("badge-info").addClass("badge-danger")
+                            .html("Banned");
+                    } else {
+                        message = "The user is now un-banned!";
+                        $this.children("i").removeClass("fa-check").addClass("fa-times");
+                        $this.closest("tr").find("td > span.badge")
+                            .removeClass("badge-danger").addClass("badge-info")
+                            .html("Active");
+                    }
+                    Swal(
+                        'Success!',
+                        message,
+                        'success'
+                    );
+                    $this.data("state", !$this.data("state"));
+                }
+            });
+        });
+        $(document).on("click", ".validate", function () {
+            var $this = $(this);
+            $.ajax({
+                url: $this.data("url"),
+                method: "patch",
+                success: function (data) {
+                    if (!!data) {
+                        Swal(
+                            'Success!',
+                            'The association is now valid!',
+                            'success'
+                        );
+                    }
+                    window.location.reload(true);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

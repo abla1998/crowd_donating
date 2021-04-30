@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<div class="charity-main-content charty-extra-space">
+
+    <!--// Main Section \\-->
+    <div class="charity-main-section charity-error-page">
+        <span class="chartiy-error-transparent"></span>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="charity-error-wrap">
+                        <span>OOOps!! ERROR</span>
+                        <span>403</span>
+                        <span>Forbiden</span>
+                        <p>We are sorry, the page you requested cannot be found</p>
+                        <a th:href="@{/}" class="charty-error-btn">Back To Homepage <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+
+</div>
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <th:block th:include="~{admin/layouts/master::head('Admin - Panel')}"/>
+</head>
+<body>
+
+<div id="page-container"
+     class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+  <th:block th:replace="~{admin/layouts/master::header}"/>
+
+  <!-- Main Container -->
+  <main id="main-container"> <!-- Hero -->
+    <div class="bg-body-light">
+      <div class="content content-full">
+        <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+          <h1 class="fleux-sm-fill h3 my-2" th:text="#{cause.causes}">
+          </h1>
+        
+        </div>
+      </div>
+    </div>
+    <!-- END Hero --> <!-- Page Content -->
+    
+    
+    <div class="content">
+      <div class="block">
+        <div class="block-content block-content-full">
+          <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+          <table
+              class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+            <thead>
+            <tr>
+              <th class="text-center" style="width: 1%;" th:text="#{cause.id}" ></th>
+              <th th:text="#{cause.name}"></th>
+              <th class="d-none d-sm-table-cell" th:text="#{cause.slug}"></th>
+              <th class="d-none d-sm-table-cell" th:text="#{cause.description}"></th>
+              <th class="d-none d-sm-table-cell" style="width: 1%;">Urgent</th>
+              <th class="d-none d-sm-table-cell" style="width: 1%;">State</th>
+              <th style="width: 1%;">#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="case:${causes}">
+              <td class="text-center font-size-sm" th:text="${case.id}"></td>
+              <td class="font-w600 font-size-sm" th:text="${case.name}"></td>
+              <td class="d-none d-sm-table-cell font-size-sm"
+                  th:text="${case.slug}"></td>
+              <td class="d-none d-sm-table-cell">
+                <th:block th:if="${#strings.length(case.description) > 80}">
+                  <p th:text="${#strings.substring(case.description ,0 ,80)}"></p>
+                </th:block>
+                <th:block th:if="${#strings.length(case.description) <= 80}">
+                  <p th:text="${case.description}"></p>
+                </th:block>
+              </td>
+              <td class="d-none d-sm-table-cell">
+                <span class="badge badge-urgent badge-warning" th:if="${case.urgent}">Urgent</span>
+                <span class="badge badge-urgent badge-success" th:if="${!case.urgent}">Not urgent</span>
+              </td>
+              <td class="d-none d-sm-table-cell">
+                <span class="badge badge-disabled badge-danger" th:if="${case.disabled}">Disabled</span>
+                <span class="badge badge-disabled badge-info" th:if="${!case.disabled}">Enabled</span>
+              </td>
+              <td>
+                <div class="btn-group">
+                
+                  <a th:href="@{'/cases/' + ${case.slug}}" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip"
+                     title="" data-original-title="View" target="_blank">
+                    <i class="fa fa-fw fa-eye"></i>
+                  </a>
+                   <a href="javascript:void(0);" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white urgent"
+                     data-toggle="tooltip" title="" data-original-title="Urgent"
+                     th:data-url="@{'/admin/causes/causes/' + ${case.id} + '/urgent'}"
+                     th:data-state="${case.urgent}">
+                    <i class="fa fa-fw fa-cog" th:if="${case.urgent}"></i>
+                    <i class="fa fa-fw fa-cog" th:if="${!case.urgent}"></i>
+                  </a>
+                  <a href="javascript:void(0);" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white ban"
+                     data-toggle="tooltip" title="" data-original-title="Ban"
+                     th:data-url="@{'/admin/causes/causes/' + ${case.id} + '/ban'}"
+                     th:data-state="${case.disabled}">
+                    <i class="fa fa-fw fa-check" th:if="${case.disabled}"></i>
+                    <i class="fa fa-fw fa-times" th:if="${!case.disabled}"></i>
+                  </a>
+                  <a href="javascript:void(0);" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white delete"
+                     data-toggle="tooltip" title="" data-original-title="Delete"
+                     th:data-url="@{'/admin/causes/causes/' + ${case.id} + '/delete'}">
+                    <i class="fa fa-fw fa-trash-alt"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- END Page Content --> </main>
+  <!-- END Main Container -->
+
+  <th:block th:replace="~{admin/layouts/master::footer}"/>
+</div>
+<!-- END Page Container -->
+
+<th:block th:include="~{admin/layouts/master::scripts}"/>
+
+<script th:src="@{/admin/js/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/admin/js/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/admin/js/plugins/datatables/buttons/dataTables.buttons.min.js}"></script>
+<script th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+<script th:src="@{/admin/js/plugins/sweetalert2/swal.js}"></script>
+<!-- <script th:src="@{/admin/js/plugins/sweetalert2/swal2.js}"></script> -->
+<script>
+    $(document).ready(function () {
+        $('.js-dataTable-full-pagination').DataTable();
+
+        $(document).on("click", ".ban", function () {
+            var $this = $(this);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to disable this case",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, disable it!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: $this.data("url"),
+                        method: "PATCH",
+                        data: {state: !$this.data("state")},
+                        success: function (data) {
+                            var message = "";
+                            if (!!data) {
+                                message = "The case is now disabled!";
+                                $this.children("i").removeClass("fa-times").addClass("fa-check");
+                                $this.closest("tr").find("td > span.badge-disabled")
+                                    .removeClass("badge-info").addClass("badge-danger")
+                                    .html("Disabled");
+                            } else {
+                                message = "The case is now enabled!";
+                                $this.children("i").removeClass("fa-check").addClass("fa-times");
+                                $this.closest("tr").find("td > span.badge-disabled")
+                                    .removeClass("badge-danger").addClass("badge-info")
+                                    .html("Enabled");
+                            }
+                            Swal(
+                                'Success!',
+                                message,
+                                'success'
+                            );
+                            $this.data("state", !$this.data("state"));
+                        }
+                    });
+                }
+            });
+        }
+        );
+        
+        $(document).on("click", ".urgent", function () {
+            var $this = $(this);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want this operation as urgent one",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Success!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: $this.data("url"),
+                        method: "PATCH",
+                        data: {state: !$this.data("state")},
+                        success: function (data) {
+                            var message = "";
+                            if (!!data) {
+                                message = "The case is now urgent!";
+                                $this.children("i");
+                                $this.closest("tr").find("td > span.badge-urgent")
+                                    .removeClass("badge-success").addClass("badge-warning")
+                                    .html("Urgent");
+                            } else {
+                                message = "The case is now not urgent!";
+                                $this.children("i");
+                                $this.closest("tr").find("td > span.badge-urgent")
+                                    .removeClass("badge-warning").addClass("badge-success")
+                                    .html("Not urgent");
+                            }
+                            Swal(
+                                'Success!',
+                                message,
+                                'success'
+                            );
+                            $this.data("state", !$this.data("state"));
+                        }
+                    });
+                }
+            });
+        }
+        );
+
+        $(document).on("click", ".delete", function () {
+            var $this = $(this);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to delete this case",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: $this.data("url"),
+                        method: "patch",
+                        success: function (data) {
+                            if (!!data) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your case has been deleted.',
+                                    'success'
+                                );
+                                $this.closest("tr").slideUp(function () {
+                                    $(this).remove();
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

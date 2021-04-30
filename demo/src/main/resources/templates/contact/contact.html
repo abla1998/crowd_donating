@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link th:href="@{/css/select2-materialize.css}" rel="stylesheet">
+
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<div class="charity-subheader-two">
+  <span class="charity-footer-transparent"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="charity-page-title"><h1 th:text="#{contact.page}"></h1></div>
+        <ul class="charity-breadcrumb">
+          <li><a th:href="@{/}" th:text="#{home}"></a></li>
+          <li class="active" th:text="#{contact.page}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="charity-main-content">
+  <div class="charity-main-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="charity-contact-form">
+            <form th:action="@{/contact}" method="post" th:object="${contact}">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name" th:text="#{name}"></label>
+                  <input type="text" class="form-control" id="name" name="name" autofocus>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" th:text="#{email}"></label>
+                  <input type="email" class="form-control" id="email" name="email">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="message" th:text="#{message}"></label>
+                  <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 display-flex">
+                <span class="flex-1"></span>
+                <button type="submit" th:text="#{submit}" class="btn btn-main"></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+<script th:src="@{/script/sweetalert2.all.min.js}"></script>
+<script th:if="${message}" th:inline="javascript">
+    Swal.fire(
+        'Good job!',
+        // this is not a comment, it's how thymeleaf pass data to js
+        // do not remove it.
+        /*[[${message}]]*/ 'Your message have been sent successfully!',
+        'success'
+    );
+</script>
+</body>
+</html>

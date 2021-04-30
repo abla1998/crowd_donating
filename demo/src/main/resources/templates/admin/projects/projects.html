@@ -1,0 +1,186 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <th:block th:include="~{admin/layouts/master::head('Admin - Panel')}"/>
+</head>
+<body>
+
+<div id="page-container"
+     class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+  <th:block th:replace="~{admin/layouts/master::header}"/>
+
+  <!-- Main Container -->
+  <main id="main-container"> <!-- Hero -->
+    <div class="bg-body-light">
+      <div class="content content-full">
+        <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+          <h1 class="flex-sm-fill h3 my-2" th:text="#{menu.projects}">
+          </h1>
+        
+        </div>
+      </div>
+    </div>
+    <!-- END Hero --> <!-- Page Content -->
+    <div class="content">
+      <div class="block">
+        <div class="block-content block-content-full">
+          <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+          <table
+              class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+            <thead>
+            <tr>
+              <th class="text-center" style="width: 1%;" th:text="#{cause.id}" ></th>
+              <th th:text="#{cause.name}"></th>
+              <th class="d-none d-sm-table-cell" th:text="#{cause.slug}"></th>
+              <th class="d-none d-sm-table-cell" th:text="#{cause.description}"></th>
+              <th class="d-none d-sm-table-cell" style="width: 1%;" th:text="#{donator.access}"></th>
+              <th style="width: 1%;">#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project:${projects}">
+              <td class="text-center font-size-sm" th:text="${project.id}"></td>
+              <td class="font-w600 font-size-sm" th:text="${project.name}"></td>
+              <td class="d-none d-sm-table-cell font-size-sm"
+                  th:text="${project.slug}"></td>
+              <td class="d-none d-sm-table-cell">
+                <th:block th:if="${#strings.length(project.description) > 80}">
+                  <p th:text="${#strings.substring(project.description ,0 ,80)}"></p>
+                </th:block>
+                <th:block th:if="${#strings.length(project.description) <= 80}">
+                  <p th:text="${project.description}"></p>
+                </th:block>
+              </td>
+              <td class="d-none d-sm-table-cell">
+                <span class="badge badge-danger" th:if="${project.disabled}">Disabled</span>
+                <span class="badge badge-info" th:if="${!project.disabled}">Enabled</span>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a th:href="@{'/projects/' + ${project.slug}}" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled" data-toggle="tooltip"
+                     title="" data-original-title="View" target="_blank">
+                    <i class="fa fa-fw fa-eye"></i>
+                  </a>
+                  <a href="javascript:void(0);" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white ban"
+                     data-toggle="tooltip" title="" data-original-title="Ban"
+                     th:data-url="@{'/admin/projects/projects/' + ${project.id} + '/ban'}"
+                     th:data-state="${project.disabled}">
+                    <i class="fa fa-fw fa-check" th:if="${project.disabled}"></i>
+                    <i class="fa fa-fw fa-times" th:if="${!project.disabled}"></i>
+                  </a>
+                  <a href="javascript:void(0);" type="button"
+                     class="btn btn-sm btn-light js-tooltip-enabled bg-white delete"
+                     data-toggle="tooltip" title="" data-original-title="Delete"
+                     th:data-url="@{'/admin/projects/projects/' + ${project.id} + '/delete'}">
+                    <i class="fa fa-fw fa-trash-alt"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- END Page Content --> </main>
+  <!-- END Main Container -->
+
+  <th:block th:replace="~{admin/layouts/master::footer}"/>
+</div>
+<!-- END Page Container -->
+
+<th:block th:include="~{admin/layouts/master::scripts}"/>
+
+<script th:src="@{/admin/js/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/admin/js/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/admin/js/plugins/datatables/buttons/dataTables.buttons.min.js}"></script>
+<script th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+<script th:src="@{/admin/js/plugins/sweetalert2/swal.js}"></script>
+<!-- <script th:src="@{/admin/js/plugins/sweetalert2/swal2.js}"></script> -->
+<script>
+    $(document).ready(function () {
+        $('.js-dataTable-full-pagination').DataTable();
+
+        $(document).on("click", ".ban", function () {
+            var $this = $(this);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to disable this project",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, disable it!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: $this.data("url"),
+                        method: "PATCH",
+                        data: {state: !$this.data("state")},
+                        success: function (data) {
+                            var message = "";
+                            if (!!data) {
+                                message = "The project is now disabled!";
+                                $this.children("i").removeClass("fa-times").addClass("fa-check");
+                                $this.closest("tr").find("td > span.badge")
+                                    .removeClass("badge-info").addClass("badge-danger")
+                                    .html("Disabled");
+                            } else {
+                                message = "The project is now enabled!";
+                                $this.children("i").removeClass("fa-check").addClass("fa-times");
+                                $this.closest("tr").find("td > span.badge")
+                                    .removeClass("badge-danger").addClass("badge-info")
+                                    .html("Enabled");
+                            }
+                            Swal(
+                                'Success!',
+                                message,
+                                'success'
+                            );
+                            $this.data("state", !$this.data("state"));
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", ".delete", function () {
+            var $this = $(this);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to delete this project",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: $this.data("url"),
+                        method: "patch",
+                        success: function (data) {
+                            if (!!data) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your project has been deleted.',
+                                    'success'
+                                );
+                                $this.closest("tr").slideUp(function () {
+                                    $(this).remove();
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

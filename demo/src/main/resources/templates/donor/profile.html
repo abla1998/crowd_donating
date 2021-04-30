@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+
+    .donorProfile {
+      border-radius: 100%;
+      position: relative;
+      float: right;
+      margin-bottom: 5px;
+      max-width: 100px;
+      min-height: 100px;
+    }
+
+    .breadcrumb {
+
+      background-color: #1da1d2 !important;
+    }
+
+  </style>
+
+  <title th:text="'Profile - ' + ${donor.username}"></title>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<section class="page-title ptb-50">
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <h2>Mon Profile <img class="donorProfile" th:src="'/images/users/'+${donor.avatar}" alt=""/></h2>
+
+        <ol style="margin-top:110px !important;" class="breadcrumb">
+          <li><a href="active">Mes Données</a></li>
+
+        </ol>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Nom Utilisateur</th>
+            <td><span th:text="${donor.username}"></span></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th>Télephone</th>
+            <td><span th:text="${donor.phone}"></span></td>
+          </tr>
+
+
+          <tr>
+            <th>Email</th>
+            <td><span th:text="${donor.email}"></span></td>
+          </tr>
+
+          <tr>
+            <th>Addresse</th>
+            <td><span th:text="${donor.address}"></span></td>
+          </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+</body>
+</html>

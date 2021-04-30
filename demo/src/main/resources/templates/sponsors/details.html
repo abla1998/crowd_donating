@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+  <link rel="stylesheet" th:href="@{/css/shortcodes/blog.css}">
+</head>
+<body class="has-header-search" id="top">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<section class="blog-section pt-50 pb-50">
+  <div class="container">
+    <div class="row">
+      <div class="col m8">
+        <div class="col m12">
+          <div class="card hoverable mt-0">
+            <div class="card-content p-0">
+              <div class="posts-content single-post">
+                <article class="post-wrapper">
+                  <header class="entry-header-wrapper clearfix">
+                    <div class="author-thumb waves-effect waves-light">
+                      <a href="#">
+                        <img alt="" th:src="@{'/images/sponsors/' + ${sponsor.logo}}">
+                      </a>
+                    </div>
+                    <div class="entry-header">
+                      <h2 class="entry-title mb-0" th:text="${sponsor.name}"></h2>
+                      <div class="entry-meta">
+                        <ul class="display-inline-flex m-0">
+                          <li>
+                            <i class="fa fa-user"></i>
+                            <a href="#" th:text="${sponsor.name}"></a>
+                          </li>
+                          <!--  <li>
+                               <i class="fa fa-clock-o"></i>
+                               <a th:text="${#calendars.format(case.deadLine,'MMM dd, yyyy')}"
+                                  href="#"></a>
+                           </li> -->
+                        </ul>
+                      </div>
+                      <div class="">
+                        <form th:action="@{'/sponsors/' + ${sponsor.id}}" th:method="delete">
+                          <button class="btn right red" th:type="submit" th:text="#{delete.sponsor}"></button>
+                        </form>
+                        <a class="btn right mr-8" th:href="@{'/sponsors/update/' + ${sponsor.id}}" th:text="#{update.sponsor}"></a>
+                      </div>
+                    </div>
+                  </header>
+                  <div class="thumb-wrapper">
+                    <img alt=""
+                         class="img-responsive" th:src="@{'/images/sponsors/' + ${sponsor.logo}}">
+                  </div>
+                  <div class="entry-content">
+                    <p th:text="${sponsor.url}"></p>
+                  </div>
+                  <div class="entry-content">
+                    <p th:text="${sponsor.description}"></p>
+                  </div>
+                  <footer class="entry-footer">
+                    <div class="post-tags">
+                                <span class="tags-links">
+                                    <i class="fa fa-tags"></i>
+                                  <!--    <a href="#" th:each="type:${case.types}" rel="tag"
+                                        th:text="${type.label}"></a> -->
+                                </span>
+                    </div>
+                  </footer>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  <div class="col m12">
+       <div class="card hoverable">
+           <div class="card-content">
+               <div class="row">
+                   <div class="col s6">
+                       <div class="featured-item border-box radius-4 hover brand-hover"
+                            data-vivaldi-spatnav-clickable="1">
+                           <div class="icon mb-30">
+                               <i class="material-icons brand-icon">favorite</i>
+                           </div>
+                           <div class="desc">
+                               <h2>Number of donators</h2>
+                               <h2><span class="timer">999</span></h2>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col s6">
+                       <div class="featured-item border-box radius-4 hover brand-hover"
+                            data-vivaldi-spatnav-clickable="1">
+                           <div class="icon mb-30">
+                               <i class="material-icons brand-icon">attach_money</i>
+                           </div>
+                           <div class="desc">
+                               <h2>Amount</h2>
+                               <h2>
+                                   <span class="timer"><th:block th:text="${case.amount}"/></span> MAD
+                               </h2>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col s12">
+                       <div class="post-wrapper mt-20 mb-20">
+                           <div class="progress-section">
+                               <span class="progress-title">Web Design</span>
+                               <div class="progress">
+                                   <div class="progress-bar brand-bg six-sec-ease-in-out"
+                                        role="progressbar"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                       <span>75%</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col s12">
+                       <div class="display-flex">
+                           <div class="flex-2"></div>
+                           <div class="card hoverable mt-0 flex-2">
+                               <a href="#" class="card-action pink lighten-1 center display-block">
+                                   <span class="grey-text text-lighten-5 mr-0">Donate now!</span>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<div class="col m4">
+   <div class="tt-sidebar-wrapper" role="complementary">
+       <div class="card hoverable mt-0">
+           <div class="card-content">
+           <p>I am a very simple card. I am good at containing small bits of information.
+           I am convenient because I require little markup to use effectively.</p>
+           </div>
+           <a href="#" class="card-action pink lighten-1 center display-block">
+               <span class="grey-text text-lighten-5 mr-0">Donate now!</span>
+           </a>
+       </div>
+       <div class="card hoverable">
+           <div class="card-content p-0">
+               <div class="author-info-wrapper">
+                   <div class="author-cover">
+                       <img th:src="@{'/images/users/' + ${case.association.cover}}" alt="">
+                   </div>
+                   <div class="author-avatar">
+                       <img th:src="@{'/images/users/' + ${case.association.avatar}}" alt="">
+                       <h2 th:text="${case.association.name}"></h2>
+                       <span th:text="${case.association.email}"></span>
+                   </div>
+                   <p th:text="${case.association.description}"></p>
+                   <div class="author-social-links center">
+                       <ul class="display-inline-flex">
+                           <li class="pl-5 pr-5">
+                               <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                           </li>
+                           <li class="pl-5 pr-5">
+                               <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                           </li>
+                           <li class="pl-5 pr-5">
+                               <a href="#" target="_blank"><i class="fa fa-google-plus"></i></a>
+                           </li>
+                           <li class="pl-5 pr-5">
+                               <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                           </li>
+                           <li class="pl-5 pr-5">
+                               <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+</div>
+</div> -->
+</section>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+</body>
+</html>

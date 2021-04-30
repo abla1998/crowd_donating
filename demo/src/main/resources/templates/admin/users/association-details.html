@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <th:block th:include="~{admin/layouts/master::head('Admin - Panel')}"/>
+  <link rel="stylesheet" th:src="@{/admin/js/plugins/sweetalert2/sweetalert2.min.css}"/>
+</head>
+<body>
+
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+  <th:block th:replace="~{admin/layouts/master::header}"/>
+
+  <!-- Main Container -->
+  <main id="main-container">
+
+    <!-- Hero -->
+    <div class="bg-body-light">
+      <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+          <h1 class="flex-sm-fill h3 my-2">
+            Page Layout
+            <small class="font-size-base font-w400 text-muted">Default</small>
+          </h1>
+          <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-alt">
+              <li class="breadcrumb-item">Layout</li>
+              <li class="breadcrumb-item">Page</li>
+              <li class="breadcrumb-item" aria-current="page">
+                <a class="link-fx" href="">Default</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- END Hero -->
+
+    <!-- Page Content -->
+    <div class="content">
+      <div class="block">
+        <div class="block-header">
+          <h3 class="block-title" th:text="${donator.name}"></h3>
+        </div>
+        <div class="block-content block-content-full"></div>
+      </div>
+    </div>
+    <!-- END Page Content -->
+
+  </main>
+  <!-- END Main Container -->
+
+  <th:block th:replace="~{admin/layouts/master::footer}"/>
+</div>
+<!-- END Page Container -->
+
+<th:block th:include="~{admin/layouts/master::scripts}"/>
+
+</body>
+</html>

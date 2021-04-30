@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/css/select2-materialize.css}" rel="stylesheet">
+<th:block th:include="~{layouts/master::head('Crowd Donating | Home')}" />
+<link rel="stylesheet" th:href="@{/css/default.css}" />
+<link rel="stylesheet" th:href="@{/css/default.date.css}" />
+</head>
+<body id="top" class="has-header-search">
+	<th:block th:replace="~{layouts/master::header}" />
+
+	<div class="charity-subheader-two">
+		<span class="charity-footer-transparent"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="charity-page-title">
+						<h1 th:text="#{event.update}"></h1>
+					</div>
+					<ul class="charity-breadcrumb">
+						<li><a th:href="@{/}" th:text="#{home}"></a></li>
+						<li class="active"><a th:href="@{/events}" th:text="#{event.list}"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<section class="section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 mt-50">
+					<div class="row">
+						<form th:action="@{/events}" th:method="put" th:object="${event}"
+							id="update-form" enctype="multipart/form-data"
+							class="col-sm-8 col-sm-offset-2">
+							<input type="hidden" id="id" name="id" th:value="${event.id}" />
+							<div
+								th:class="|form-group  ${errors.containsKey('title') ? 'has-error' : ''}">
+								<label for="title" th:text="#{event.title}"></label> <input type="text" name="title"
+									th:value="${event.title}" id="title" required
+									class="form-control" /> <span class="help-block"
+									th:if="${errors.containsKey('title')}"
+									th:text="${errors.get('title')}"></span>
+							</div>
+							<div class="form-group">
+								<label for="description" th:text="#{event.description}"></label>
+								<textarea name="description" class="form-control"
+									id="description" th:text="${event.description}"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="plannedDate" th:text="#{event.plannedDate}"></label> <input type="text"
+									class="datepicker form-control" name="plannedDate"
+									id="plannedDate"
+									th:value="${#calendars.format(event.plannedDate,'MMM dd, yyyy')}"
+									required>
+							</div>
+							<div class="form-group">
+								<label for="image" th:text="#{event.image}"></label><input type="file"
+									class="form-control" name="image" id="image" required>
+							</div>
+							<br>
+							<div class="form-group display-flex">
+								<div class="flex-1"></div>
+								<button class="btn btn-main mr-6" th:text="#{submit}"></button>
+							</div>
+							<br>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<th:block th:replace="~{layouts/master::footer}" />
+	<th:block th:include="~{layouts/master::js}" />
+	<script th:src="@{/script/picker.js}"></script>
+	<script th:src="@{/script/picker.date.js}"></script>
+	<script>
+		$(document).ready(function() {
+			$('.datepicker').pickadate({
+				format : 'mmm dd, yyyy',
+			});
+		});
+	</script>
+
+</body>
+</html>

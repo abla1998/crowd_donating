@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link th:href="@{/css/select2-materialize.css}" rel="stylesheet">
+
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<div class="charity-subheader-two">
+  <span class="charity-footer-transparent"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="charity-page-title"><h1 th:text="#{donation.page}"></h1></div>
+        <ul class="charity-breadcrumb">
+          <li><a href="index-2.html" th:text="#{home}"></a></li>
+          <li class="active" th:text="#{donation.page}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="charity-main-content">
+  <div class="charity-main-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="charity-section-heading">Choose Your Donation</h2>
+          <div class="charity-donation-section">
+            <h6>How Much Would You Like To Donate?</h6>
+            <ul>
+              <li class="current" data-value="50.0">
+                <span class="donation-wrap">50 MAD</span>
+              </li>
+              <li data-value="100.0">
+                <span class="donation-wrap">100 MAD</span>
+              </li>
+              <li data-value="200.0">
+                <span class="donation-wrap">200 MAD</span>
+              </li>
+              <li data-value="300.0">
+                <span class="donation-wrap">300 MAD</span>
+              </li>
+              <li data-value="400.0">
+                <span class="donation-wrap">400 MAD</span>
+              </li>
+              <li data-value="500.0">
+                <span class="donation-wrap">500 MAD</span>
+              </li>
+              <li data-value="1000.0">
+                <span class="donation-wrap">1000 MAD</span>
+              </li>
+              <li class="add-amount">
+                <div class="donation-wrap">
+                  <span>Custom Amount:</span>
+                  <input placeholder="" type="number" id="custom-value" class="for-control"/>
+                </div>
+              </li>
+            </ul>
+            <form th:action="@{/projects/paypal}" method="post" th:object="${donation}">
+              <input type="hidden" id="donation-value" name="value" value="50.0">
+              <input type="hidden" name="id" th:value="${donation.project.id}">
+              <button type="submit" class="btn btn-main pull-right mb-24">
+                <i class="fa fa-paypal"></i> <span th:text="#{cause.donate}"></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+<script th:src="@{/js/select2.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $("#card-number, #security-code, #expiry-date-month, #expiry-date-year").keypress(function (e) {
+            if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
+                return false;
+            }
+        });
+        $("#security-code").keypress(function () {
+            if ($(this).val().length >= 3)
+                return false;
+        });
+        $("#expiry-date-month, #expiry-date-year").keypress(function (e) {
+            if ($(this).val().length >= 2)
+                return false;
+        });
+        $("#card-number").keyup(function (e) {
+            $(this).val(cc_format($(this).val()));
+        });
+
+        function cc_format(value) {
+            var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            var matches = v.match(/\d{4,16}/g);
+            var match = matches && matches[0] || '';
+            var parts = [];
+
+            for (i = 0, len = match.length; i < len; i += 4) {
+                parts.push(match.substring(i, i + 4));
+            }
+
+            if (parts.length)
+                return parts.join(' ');
+            return value;
+        }
+    });
+</script>
+</body>
+</html>

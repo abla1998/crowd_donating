@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="~{layouts/master::head('Crowd Donating | Home')}" />
+</head>
+<body id="top" class="has-header-search">
+	<th:block th:replace="~{layouts/master::header}" />
+
+	<!--// SubHeader \\-->
+	<div class="charity-subheader-two">
+		<span class="charity-footer-transparent"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="charity-page-title">
+						<h1 th:text="#{menu.projects}"></h1>
+					</div>
+					<ul class="charity-breadcrumb">
+						<li><a th:href="@{/}" th:text="#{menu.home}"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--// SubHeader \\-->
+
+	<div class="charity-main-content">
+
+		<!--// Main Section \\-->
+		<div class="charity-main-section">
+			<div class="container">
+				<div class="charity-cause charity-cause-simplegrid">
+            <ul class="row">
+              <li class="col-md-4" th:each="project:${projects}">
+                <figure>
+                  <a th:href="@{'/projects/' + ${project.slug}}">
+                    <img th:src="@{'/images/projects/' + ${project.image}}" th:height="250"/>
+                  </a>
+                  <figcaption>
+                    <a th:href="@{'/projects/' + ${project.slug}}" th:text="|${project.nbreDonations} #{cause.donationsNbre}|"><i
+                        class="fa fa-users"></i></a></figcaption>
+                </figure>
+                <section>
+                  <h4>
+                    <a th:href="@{'/projects/' + ${project.slug}}" th:text="${project.name}"></a>
+                  </h4>
+                  <th:block th:if="${#strings.length(project.description) > 90}">
+                    <p th:text="${#strings.substring(project.description ,0 ,90)}"></p>
+                  </th:block>
+                  <th:block th:if="${#strings.length(project.description) <= 90}">
+                    <p th:text="${project.description}"></p>
+                  </th:block>
+                </section>
+                <div class="skillst">
+                  <div class="progressbar1" th:data-width="${#numbers.formatDecimal(project.percentageRaised, 0, 2)}"
+                       th:data-target="${project.amount}"></div>
+                </div>
+                <div class="cause-simplegrid-bottom">
+                  <a th:if="${project.amountRaised < project.amount}" th:href="@{'/projects/' + ${project.slug} + '/donate'}"
+                     class="charity-donate-btn charity-bgcolor" th:text="#{cause.donate}"></a>
+                  <span th:text="${project.amountRaised + '/' + project.amount}"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+			</div>
+		</div>
+		<!--// Main Section \\-->
+
+	</div>
+
+	<th:block th:replace="~{layouts/master::footer}" />
+	<th:block th:include="~{layouts/master::js}" />
+</body>
+</html>

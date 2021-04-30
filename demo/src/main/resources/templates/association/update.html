@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<div class="charity-main-wrapper">
+  <div class="charity-subheader-two">
+    <span class="charity-footer-transparent"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="charity-page-title"><h1 th:text="#{about.as}"></h1></div>
+          <ul class="charity-breadcrumb">
+            <li><a href="index-2.html" th:text="#{home}"></a></li>
+            <li class="active" th:text="#{about.as}"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charity-main-content pb-0">
+    <div class="charity-main-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="charity-aboutus-text">
+              <h2 th:text="${association.name}"></h2>
+              <p th:text="${association.description}"></p>
+              <ul class="charity-list-style-one" th:each="file : ${association.files}">
+                <li><a th:href="@{'/files/association/' + ${file.path}}" th:text="#{documentation}"></a></li>
+              </ul>
+              <a th:href="@{/association/update}" class="charity-about-btn" th:text="#{update}"></a>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <figure class="chrity-thumb-style">
+              <img th:src="@{'/images/users/'+ ${association.avatar}}" alt="">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="charity-contactus-info">
+     <div class="container">
+      <ul class="row">
+        <li class="col-md-3">
+          <div class="charity-contactus-text">
+            <i class="fa fa-phone"></i>
+            <h4 th:text="#{call.as.at}"></h4>
+            <p th:text="${association.phone}"></p>
+          </div>
+        </li>
+        <li class="col-md-3">
+          <div class="charity-contactus-text">
+            <i class="fa fa-map-marker"></i>
+            <h4 th:text="#{our.location}"></h4>
+            <p th:text="${association.address}"></p>
+          </div>
+        </li>
+        <li class="col-md-3">
+          <div class="charity-contactus-text">
+            <i class="fa fa-envelope"></i>
+            <h4 th:text="#{mail.us.at}"></h4>
+            <p><a href="mailto:name@email.com" th:text="${association.email}"></a></p>
+          </div>
+        </li>
+        <li class="col-md-3">
+          <div class="charity-contactus-text">
+            <i class="fa fa-globe"></i>
+            <h4 th:text="#{our.website}"></h4>
+            <p><a href="404.html" th:text="${association.webSite}"></a></p>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div class="charity-main-section charity-counterbg-full">
+      <span class="dark-black-transparent"></span>
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-12 padding-top-spacer ">
+            <div class="charity-counter aboutus-counter">
+              <ul class="row">
+                <li class="col-md-2">
+                  <i class="icon-help"></i>
+                  <span class="charity-color" id="word-count1" th:text="${stats.nbreDonators}"></span>
+                  <small th:text="#{cause.donors}"></small>
+                </li>
+                <li class="col-md-2">
+                  <i class="icon-donation2"></i>
+                  <span class="charity-color" id="word-count1" th:text="${stats.globalTotalDonations}"></span>
+                  <small th:text="#{cause.donatings}"></small>
+                </li>
+                <li class="col-md-2">
+                  <i class="icon-donation2"></i>
+                  <span class="charity-color" id="word-count1" th:text="${stats.globalRaised}"></span>
+                  <small th:text="#{cause.raised}"></small>
+                </li>
+                <li class="col-md-2">
+                  <i class="icon-ribbon"></i>
+                  <span class="charity-color" id="word-count2" th:text="${stats.globalAmount}"></span>
+                  <small th:text="#{cause.goal}"></small>
+                </li>
+                <li class="col-md-2">
+                  <i class="icon-mortarboard"></i>
+                  <span class="charity-color" id="word-count3" th:text="${stats.percentageRaised}"></span>
+                  <small th:text="#{cause.percentage}"></small>
+                </li>
+                <li class="col-md-2">
+                  <i class="icon-help"></i>
+                  <span class="charity-color" id="word-count4" th:text="${stats.solvedCauses}"></span>
+                  <small th:text="#{cause.solved}"></small>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--// Counter \\-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="charity-main-content">
+		<!--// Main Section \\-->
+		<div class="charity-main-section charity-minus-margin">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-12">
+						<div class="charity-fancy-title">
+							<div class="charity-fancy-title-wrap">
+								<h2 th:text="#{cause.causes}"></h2>
+							</div>
+						</div>
+						<!--// CauseGrid \\-->
+						<div class="charity-cause charity-cause-simplegrid">
+							<ul class="row">
+								<li class="col-md-4" th:each="case:${cases}">
+									<figure>
+										<a th:href="@{'/cases/' + ${case.slug}}"> 
+										<img th:src="@{'/images/cases/' + ${case.image}}" style="height:250px;"/>
+										</a>
+										 <figcaption> 
+										 	<a th:href="@{'/cases/' + ${case.slug}}" th:text="|${case.nbreDonations} #{cause.donationsNbre}|"><i class="fa fa-users"></i></a> </figcaption>
+									</figure>
+									<section>
+										<h4>
+											<a th:href="@{'/cases/' + ${case.slug}}" th:text="${case.name}"></a>
+										</h4>
+                    <th:block th:if="${#strings.length(case.description) > 90}">
+                      <p th:text="${#strings.substring(case.description ,0 ,90)}"></p>
+                    </th:block>
+                    <th:block th:if="${#strings.length(case.description) <= 90}">
+                      <p th:text="${case.description}"></p>
+                    </th:block>
+									</section>
+									<div class="skillst">
+										<div class="progressbar1" th:data-width="${#numbers.formatDecimal(case.percentageRaised, 0, 2)}" th:data-target="${case.amount}"></div>
+									</div>
+									<div class="cause-simplegrid-bottom">
+										<a th:if="${case.amountRaised < case.amount}" th:href="@{'/cases/' + ${case.slug} + '/donate'}"
+											class="charity-donate-btn charity-bgcolor" th:text="#{cause.donate}"></a> 
+											<span th:text="${case.amountRaised + '/' + case.amount}"></span>
+									</div>
+								</li>
+							</ul>			
+						</div>
+					</div>	
+				</div>
+			</div>				
+		</div>
+		</div>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+</body>
+</html>

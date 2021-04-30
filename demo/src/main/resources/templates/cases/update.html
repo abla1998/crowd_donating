@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+  <link rel="stylesheet" th:href="@{/css/default.css}"/>
+  <link rel="stylesheet" th:href="@{/css/default.date.css}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:include="~{layouts/master::header}"/>
+
+
+<div class="charity-subheader-two">
+  <span class="charity-footer-transparent"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="charity-page-title">
+          <h1 th:text="#{cause.updateCause}"></h1>
+        </div>
+        <ul class="charity-breadcrumb">
+          <li><a th:href="@{'/cases'}" th:text="#{cause.causes}"></a></li>
+          <li class="active" th:text="#{update}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 mt-50">
+        <form th:action="@{/cases}" th:method="put" th:object="${aCase}"
+              enctype="multipart/form-data">
+
+          <input type="hidden" id="id" name="id" th:value="${aCase.id}"/>
+          <input type="hidden" id="slug" name="slug"
+                 th:value="${aCase.slug}"/>
+          <div class="form-group">
+            <label for="name" class="control-label" th:text="#{cause.name}"></label>
+            <input type="text" name="name" th:value="${aCase.name}"
+                   id="name" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="description" th:text="#{cause.description}"></label>
+            <textarea name="description"
+                      class="validate materialize-textarea form-control" required
+                      id="description" th:text="${aCase.description}"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="deadline" th:text="#{cause.deadLine}"></label> <input
+              type="text" class="validate datepicker form-control"
+              name="deadLine" id="deadline"
+              th:value="${#calendars.format(aCase.deadLine,'MMM dd, yyyy')}"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="amount" th:text="#{cause.amount}"></label> <input
+              type="number" name="amount" class="validate form-control"
+              id="amount" th:value="${aCase.amount}" required value="1000">
+          </div>
+          <div
+              th:class="|form-group  ${errors.containsKey('types') ? 'has-error' : ''}">
+            <label for="types" class="select2-tags-label control-label"
+                   th:text="#{cause.types}"></label> <select name="caseTypes"
+                                                             id="types" multiple
+                                                             th:class="|form-control select2-tags validate ${errors.containsKey('types') ? 'invalid' : ''}|">
+            <option th:each="type:${types}" th:value="${type.label}"
+                    th:text="${type.label}"></option>
+          </select> <span class="help-block" th:if="${errors.containsKey('types')}"
+                          th:text="${errors.get('types')}"></span>
+          </div>
+          <div class="form-group">
+            <label for="image" th:text="#{global.picture}"></label> <input
+              type="file" name="imageFile" id="image"
+              th:value="${aCase.image}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="documents" th:text="#{documents}"></label> <input
+              type="file" name="documents" id="documents"
+              class="form-control" multiple required>
+          </div>
+
+        </form>
+
+        <div class="form-group display-inline-block">
+          <ul class="charity-list-style-two mb-0" th:each="file:${aCase.files}">
+            <li class="collection-item">
+              <a th:href="@{'/files/cases/' + ${file.id}}"
+                 th:text="${#strings.substring(file.path, #strings.indexOf(file.path, '_') + 1)}"
+                 target="_blank"></a>
+              <a class="delete-file" href="#"
+                 th:onclick="'event.preventDefault(); document.getElementById(\'delete-file-form-' + ${file.id} + '\').submit();'">
+                <i class="fa fa-times text-danger"></i>
+              </a>
+              <form th:action="@{'/cases/files/' + ${file.id}}"
+                    th:method="delete" th:id="'delete-file-form-' + ${file.id}"></form>
+            </li>
+          </ul>
+        </div>
+        <div class="form-group display-flex">
+          <div class="flex-1"></div>
+          <button class="btn btn-main" th:text="#{submit}"
+                  onclick="event.preventDefault(); document.getElementById('update-form').submit();">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+<script th:src="@{/js/select2.min.js}"></script>
+</body>
+</html>

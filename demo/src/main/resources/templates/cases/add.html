@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+  <link rel="stylesheet" th:href="@{/css/default.css}"/>
+  <link rel="stylesheet" th:href="@{/css/default.date.css}"/>
+</head>
+<body id="top" class="has-header-search">
+<th:block th:include="~{layouts/master::header}"/>
+
+<div class="charity-subheader-two">
+  <span class="charity-footer-transparent"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="charity-page-title"><h1 th:text="#{cause.causes}"></h1></div>
+        <ul class="charity-breadcrumb">
+          <li><a th:href="@{/}" th:text="#{cause.causes}"></a></li>
+          <li class="active" th:text="#{cause.add}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-50">
+        <div class="row">
+          <form th:action="@{/cases}" method="post" th:object="${aCase}"
+                enctype="multipart/form-data"
+                class="col-sm-8 col-sm-offset-2">
+            <div th:class="|form-group  ${errors.containsKey('name') ? 'has-error' : ''}">
+              <label for="name" class="control-label" th:text="#{cause.name}"></label>
+              <input type="text" name="name" th:value="${aCase.name}" id="name" required
+                     th:class="|form-control validate ${errors.containsKey('name') ? 'invalid' : ''}|">
+              <span class="help-block" th:if="${errors.containsKey('name')}" th:text="${errors.get('name')}"></span>
+            </div>
+            <div class="form-group">
+              <label for="description" th:text="#{cause.description}"></label>
+              <textarea name="description" class="validate materialize-textarea form-control" required
+                        id="description" th:text="${aCase.description}"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="deadline" th:text="#{cause.deadLine}"></label>
+              <input type="text" class="validate datepicker form-control" name="deadLine" id="deadline"
+                     th:value="${#calendars.format(aCase.deadLine,'MMM dd, yyyy')}" required>
+            </div>
+            <div class="form-group">
+              <label for="amount" th:text="#{cause.amount}"></label>
+              <input type="number" name="amount" class="validate form-control" id="amount" th:value="${aCase.amount}"
+                     required value="1000">
+            </div>
+            <div th:class="|form-group  ${errors.containsKey('types') ? 'has-error' : ''}">
+              <label for="types" class="select2-tags-label control-label" th:text="#{cause.types}"></label>
+              <select name="caseTypes" id="types" multiple
+                      th:class="|form-control select2-tags validate ${errors.containsKey('types') ? 'invalid' : ''}|">
+                <option th:each="type:${types}" th:value="${type.label}"
+                        th:text="${type.label}"></option>
+              </select>
+              <span class="help-block" th:if="${errors.containsKey('types')}" th:text="${errors.get('types')}"></span>
+            </div>
+            <div class="form-group">
+              <label for="image" th:text="#{global.picture}"></label>
+              <input type="file" name="imageFile" id="image" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="documents" th:text="#{documents}"></label>
+              <input type="file" name="documents" id="documents" class="form-control" multiple required>
+            </div>
+            <div class="form-group display-flex">
+              <div class="flex-1"></div>
+              <button class="btn btn-main" th:text="#{submit}">
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+<script th:src="@{/script/picker.js}"></script>
+<script th:src="@{/script/picker.date.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            format: 'mmm dd, yyyy',
+        });
+    });
+</script>
+</body>
+</html>

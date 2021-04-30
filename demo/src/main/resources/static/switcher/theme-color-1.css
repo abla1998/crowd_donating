@@ -1,0 +1,65 @@
+
+.charity-color, .charity-colorhover:hover,/* Navigation */.navbar-nav > li:hover > a,.navbar-nav > li.active > a, .charity-megalist li:hover a,.charity-dropdown-menu > li:hover > a,.charity-grid-options li:hover a,
+.widget_categories ul li:hover a,.widget_categories ul li:hover:before,.widget_recent_news ul li:hover section h6 a,.widget_twitter ul li p a,.charity-breadcrumb li,.charity-cause-category span.charity-right-section small,
+.charity-filterable ul li a.charity-active,.charity-filterable ul li:hover a,
+.charity-contactus-text i,.charity-blog-options ul li a:hover,.charity-tags a:hover,.charity-blog-social ul li a:hover,.charity-prenxt-post ul li:hover .charity-post-arrow,
+.charity-admin-social li a:hover,.comment-reply-link:hover,.comment-reply-link:hover i,.widget_events ul li:hover .charity-events h6 a,.widget_archive ul li a:hover,.widget_archive ul li:hover:before,
+.charity-cause-social li a:hover,.charity-team-social > li > a:hover,.star-rating::before, .star-rating-box::before,.widget_featured_causes ul li:hover .charity-featured-text h6 a,
+.charity-volunteer-post h3 span,.charity-aboutus-text h6 span,.charity-sermon-detail-option li h6 > a:hover,.charity-social li a:hover,.charity-featured-text .skillst span:last-child,
+.charity-sermon-grid ul li:hover .charity-readmore-btn {
+    color: #edb542;
+}
+.charity-bgcolor, .charity-bgcolorhover:hover,.charity-footer-title:before,.charity-footer-title:after,.navbar-nav > li > a:before,.navbar-nav > li > a:after,.charity-page-title h1:before,.charity-page-title h1:after,
+.charity-page-title:before,.charity-page-title:after,.charity-classic-btn:before,.charity-classic-btn:after,.charity-fancy-title h2:before,.charity-fancy-title h2:after,.charity-fancy-title-wrap:before,
+.charity-fancy-title-wrap:after,.charity-cause-simplegrid figure figcaption:before,.charity-cause-simplegrid figure figcaption:after,.bar-container .bar small,.charity-simple-service ul li:hover span:after,
+.charity-bloggrid-hover:before,.charity-masonery-gallery figcaption:before,.charity-team-medium ul li:hover figure span,
+.charity-left-top-border:before,.charity-left-top-border:after,.charity-right-top-border:before,.charity-right-top-border:after,.charity-left-bottom-border:before,.charity-left-bottom-border:after,
+.charity-right-bottom-border:before,.charity-right-bottom-border:after,.charity-event-medium figure figcaption:before,.charity-header-two .charity-logo:before,
+.charity-header-two .navbar-nav > li.active > a,.charity-header-two .navbar-nav > li:hover > a,.charity-banner-two .slick-arrow:hover,
+.charty-error-btn,.charity-contact-form form ul li input[type="submit"],.charity-section-heading:before,.charity-section-heading:after,
+.charity-related-blog ul li figure a .charity-related-hover,.charity-related-blog figure figcaption time,.comments-title:before,.comments-title:after,.comment-respond form p input[type="submit"],
+.charity-widget-title:before,.charity-widget-title:after,.widget_events ul li time,.widget_gallery ul li a:before,.widget_gallery ul li a:after,.charity-event-gallery ul li a:before,
+.charity-sermon-list ul li figure a span,.charity-sermon-btn,.charity-pagination > ul > li > span.current,.charity-pagination > ul > li > a:hover,.charity-sermon-social li a span,
+.charity-donate-btn,.charity-plan-btn,.charity-team-grid ul li:hover figure a i,.charity-team-grid ul li:hover figure:before,.charity-team-grid ul li:hover figure:after,
+.charity-volunteer-form form ul li input[type="submit"],.charity-accordion .panel-heading .panel-title > a,.charity-related-result ul li figure a .charity-search-hover,
+.charity-comment-btn,.add-to-cart,.charity-shop-detail figure figcaption > ul > li > a:before,.charity-tab-heading:before,.charity-tab-heading:after,.widget_featured_causes ul li figure > a:before,
+.charity-shop-grid ul li figure a:before,.charity-shop-list ul li figure span,.charity-shop-list ul li figure a:before,.charity-sermon-grid ul li:hover .charity-readmore-btn:after,
+.charity-shop-list ul li figure a:after,.charity-event-grid ul li figure > a:before,.charity-event-grid ul li figure > a:after,.charity-event-grid ul li figure figcaption span time,
+.charity-event-readmore-btn,.charity-event-classic ul li figure a:before,.charity-event-classic ul li figure time,.charity-cause-modern ul li figure a:before,.charity-partner-slider .slick-arrow:hover,
+.charity-about-btn,.charity-modern-team ul li figure a:before,.charity-modern-team ul li:hover .charity-modern-team-text:before,.charity-modern-team ul li:hover .charity-modern-team-text:after,
+.charity-project-grid ul li figure a:before,.charity-cause-skillbar .bar-container .bar small,.charity-fancy-title-wrap:before,.charity-fancy-title-wrap:after,.charity-cause-text .bar-container .bar small,
+.charity-featured-text .bar-container .bar small:before,.charity-join-btn,.charity-cause-list ul li figure a:before,.charity-cause-list ul li figure a:after,.charity-services-campaign .bar-container .bar small,
+.charity-cause-donate .bar-container .bar small,.charity-cause-modern-skill .bar-container .bar small,.charity-sermon-grid ul li:hover .charity-readmore-btn:before {
+    background-color: #edb542;
+}
+.charity-bordercolor, .charity-bordercolorhover:hover,.charity-blog-grid figure figcaption,.charity-team-medium ul li:hover figure ~ section,
+.charity-pagination > ul > li > span.current,.charity-pagination > ul > li > a:hover,.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,.nav-tabs > li.active > a:focus,.chrity-thumb-style:before,.charity-donation-section ul .current .donation-wrap,.charity-donation-section ul .current .donation-wrap:before {
+    border-color: #edb542;
+}
+
+.bar-container .bar small:before,.copyright-two .charity-back-top:hover:before,.copyright-two .charity-back-top:hover:after {
+	border-bottom-color: #edb542;
+}
+.bar-container .bar small:after,.charity-header-two .charity-logo:after {
+	border-top-color: #edb542;
+}
+
+blockquote {
+	border-left-color: #edb542;
+}
+.charity-related-blog ul li figure figcaption,.charity-cause-skillbar .bar-container .bar small:before,.charity-cause-text .bar-container .bar small:before,
+.charity-services-campaign .bar-container .bar small:before,.charity-cause-donate .bar-container .bar small:before,
+.charity-cause-modern-skill .bar-container .bar small:before  {
+	border-bottom-color: #edb542;
+}
+.charity-sermon-social li a span:before,.charity-event-classic ul li figure time:before,.charity-cause-skillbar .bar-container .bar small:after,
+.charity-cause-text .bar-container .bar small:after,.charity-services-campaign .bar-container .bar small:after,
+.charity-cause-donate .bar-container .bar small:after,.charity-cause-modern-skill .bar-container .bar small:after {
+	border-top-color: #edb542;
+}
+
+.charity-cause-text .bar-container .bar,.charity-cause-donate .bar-container .bar,.charity-cause-skillbar .bar-container .bar,.charity-cause-simplegrid .bar-container .bar,
+.charity-cause-modern-skill .bar-container .bar,.charity-services-campaign .bar-container .bar,.charity-featured-text .bar-container .bar,.charity-causestrip-section .bar-container .bar {
+  background-color: #edb542 !important;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/css/select2-materialize.css}">
+  <th:block th:include="~{layouts/master::head('Crowd Donating | Home')}"/>
+</head>
+<body class="has-header-search" id="top">
+<th:block th:replace="~{layouts/master::header}"/>
+
+<section class="page-title ptb-50">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h2>Sponsors</h2>
+        <ol class="breadcrumb">
+          <li><a th:href="@{/}">Home</a></li>
+          <li><a th:href="@{/sponsors}">Sponsors</a></li>
+          <li class="active">Update</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <form class="col s8 offset-s2" enctype="multipart/form-data" id="update-form" th:action="@{/sponsors}"
+                th:method="put" th:object="${sponsor}">
+            <input id="id" name="id" th:value="${sponsor.id}" type="hidden"/>
+
+            <!--   <input type="hidden" id="name" name="name" th:value="${sponsor.name"/> -->
+            <div class="input-field">
+              <input id="name" name="name" th:class="|validate ${errors.containsKey('name') ? 'invalid' : ''}|"
+                     th:value="${sponsor.name}"
+                     type="text">
+              <label for="name">Name</label>
+              <span class="helper-text" data-success="" th:data-error="${errors.get('name')}"
+                    th:if="${errors.containsKey('name')}"></span>
+            </div>
+            <div class="input-field">
+              <input id="url" name="url" th:class="|validate ${errors.containsKey('url') ? 'invalid' : ''}|"
+                     th:value="${sponsor.url}"
+                     type="text">
+              <label for="name">URL</label>
+              <span class="helper-text" data-success="" th:data-error="${errors.get('url')}"
+                    th:if="${errors.containsKey('url')}"></span>
+            </div>
+            <div class="input-field file-field">
+              <div class="btn">
+                <span><i class="material-icons">Logo</i></span>
+                <input id="image" name="imageFile" th:value="${sponsor.logo}" type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" th:value="${sponsor.logo}" title="" type="text">
+              </div>
+            </div>
+
+            <div class="input-field">
+                            <textarea class="validate materialize-textarea" id="description"
+                                      name="description" th:text="${sponsor.description}"></textarea>
+              <label for="description">Description</label>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+      <!--    <div class="col s8 offset-s2">
+             <ul class="collection">
+                 <li class="collection-item" th:each="file:${aCase.files}">
+                     <th:block th:text="${file.path}"/>
+                     <a th:href="@{'/files/cases/' + ${file.id}}" th:text="${file.path}" target="_blank"></a>
+                     <a class="delete-file" href="#"
+                        th:onclick="'event.preventDefault(); document.getElementById(\'delete-file-form-' + ${file.id} + '\').submit();'">
+                         <i class="material-icons red-text darken-1">close</i>
+                     </a>
+                     <form th:action="@{'/cases/files/' + ${file.id}}" th:method="delete"
+                           th:id="'delete-file-form-' + ${file.id}"></form>
+                 </li>
+             </ul>
+         </div> -->
+      <div class="col s8 offset-s2">
+        <div class="input-field display-flex">
+          <div class="flex-1"></div>
+          <button class="btn-large waves-effect waves-light"
+                  onclick="event.preventDefault(); document.getElementById('update-form').submit();">
+            Submit <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<th:block th:replace="~{layouts/master::footer}"/>
+<th:block th:include="~{layouts/master::js}"/>
+<script th:src="@{/js/select2.min.js}"></script>
+</body>
+</html>

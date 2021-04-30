@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="~{layouts/master::head('Crowd Donating | Home')}" />
+</head>
+
+
+<body id="top" class="has-header-search">
+	<th:block th:replace="~{layouts/master::header}" />
+
+	<!--// SubHeader \\-->
+	<div class="charity-subheader-two">
+		<span class="charity-footer-transparent"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="charity-page-title">
+						<h1 th:text="#{cause.causes}"></h1>
+					</div>
+					<ul class="charity-breadcrumb">
+						<li><a th:href="@{/}" th:text="#{menu.home}"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--// SubHeader \\-->
+
+	<div class="charity-main-content">
+
+		<!--// Main Section \\-->
+		<div class="charity-main-section">
+			<div>
+				<div class="row">
+
+					<aside class="col-md-3 ml-50">
+
+						 <div class="widget widget_archive">
+                                <h2 class="charity-widget-title">Types</h2>
+                                <ul>
+                                    <li th:each="type: ${types}"><a th:href="@{'/cases/type/' + ${type.id}}" th:text="${type.label}"></a></li>
+                                </ul>
+                            </div>
+					</aside>
+
+					<div class="col-md-8">
+						<!--// CauseGrid \\-->
+						<div class="charity-cause charity-cause-simplegrid">
+							<ul class="row">
+								<li class="col-md-4" th:each="case:${cases}">
+									<figure>
+										<a th:href="@{'/cases/' + ${case.slug}}"> 
+										<img
+											th:src="@{'/images/cases/' + ${case.image}}" th:height="250" />
+											
+						
+										</a>
+										<figcaption>
+											<a th:href="@{'/cases/' + ${case.slug}}"
+												th:text="|${case.nbreDonations} #{cause.donationsNbre}|"><i
+												class="fa fa-users"></i></a>
+										</figcaption>
+									</figure>
+									<section>
+										<h4>
+											<a th:href="@{'/cases/' + ${case.slug}}"
+												th:text="${case.name}"></a>
+										</h4>
+										<th:block th:if="${#strings.length(case.description) > 90}">
+											<p th:text="${#strings.substring(case.description ,0 ,90)}"></p>
+										</th:block>
+										<th:block th:if="${#strings.length(case.description) <= 90}">
+											<p th:text="${case.description}"></p>
+										</th:block>
+									</section>
+									<div class="skillst">
+										<div class="progressbar1"
+											th:data-width="${#numbers.formatDecimal(case.percentageRaised, 0, 2)}"
+											th:data-target="${case.amount}"></div>
+									</div>
+									<div class="cause-simplegrid-bottom">
+										<a th:if="${case.amountRaised < case.amount}"
+											th:href="@{'/cases/' + ${case.slug} + '/donate'}"
+											class="charity-donate-btn charity-bgcolor"
+											th:text="#{cause.donate}"></a> 
+											<span
+											th:text="${case.amountRaised + '/' + case.amount}"></span>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!--// Pagination \\-->
+						<div class="charity-pagination">
+							<ul class="page-numbers">
+								<li th:each="p,status:${pages}"><span
+									th:class="|'page-numbers' ${currentPage ==  status.index + 1 ? 'current' : ''}|">
+										<a th:href="@{/cases(page=${status.index})}"
+										th:text="${status.index + 1}"></a>
+								</span></li>
+							</ul>
+						</div>
+						<!--// Pagination \\-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--// Main Section \\-->
+
+	</div>
+
+	<th:block th:replace="~{layouts/master::footer}" />
+	<th:block th:include="~{layouts/master::js}" />
+</body>
+</html>

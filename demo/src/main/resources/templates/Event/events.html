@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="~{layouts/master::head('Crowd Donating | Home')}" />
+</head>
+<body id="top" class="has-header-search">
+	<th:block th:replace="~{layouts/master::header}" />
+
+	<div class="charity-main-wrapper">
+		<div class="charity-subheader-two">
+			<span class="charity-footer-transparent"></span>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="charity-page-title">
+							<h1 th:text="#{event.list}"></h1>
+						</div>
+						<ul class="charity-breadcrumb">
+							<li><a th:href="@{/}" th:text="#{home}"></a></li>
+							<li class="active" th:text="#{event.list}"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--// Main Content \\-->
+		<div class="charity-main-content">
+			<!--// Main Section \\-->
+			<div class="charity-main-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="charity-event charity-event-grid">
+								<ul class="row" th:if="${events}">
+									<li class="col-md-4" th:each="event:${events}">
+										<figure>
+											<a th:href="@{'/events/' + ${event.id}}"> <img
+												th:src="@{'/images/event/' + ${event.image}}" alt=""><i	class="fa fa-link"></i>
+											</a>
+											<figcaption>
+												<span><time
+														th:text="${#calendars.format(event.plannedDate, 'dd MMM')}"></time></span>
+												<h5>
+													<a th:href="@{'/events/' + ${event.id}}"
+														th:text="${event.title}"></a>
+												</h5>
+											</figcaption>
+										</figure>
+										<div class="charity-event-grid-text">
+											<p th:text="${ #strings.substring(event.description, 0, 120)}"></p>
+											<ul>
+												<!-- <li><i class="fa fa-institution"></i>
+													<p th:text="${event.association.name}"></p></li> -->
+													
+													<li>
+												<i class="fa fa-map-marker"></i><span th:text="${event.address}"></span>
+												</li>
+												<li><i class="fa fa-clock-o"></i>
+													<p
+														th:text="${#calendars.format(event.plannedDate, 'MMM dd, yyyy')}"></p>
+												</li>
+												
+											</ul>
+									
+											<a th:href="@{'/events/' + ${event.id}}"
+												class="charity-event-readmore-btn" th:text="#{readMore}"><i
+												class="fa fa-share"></i></a>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!--// Pagination \\-->
+							<div class="charity-pagination">
+								<ul class="page-numbers">
+									<li><a class="previous page-numbers" href="404.html"><span
+											aria-label="Next"><i class="fa fa-angle-left"></i></span></a></li>
+									<li><span class="page-numbers current">1</span></li>
+									<li><a class="page-numbers" href="404.html">2</a></li>
+									<li><a class="page-numbers" href="404.html">3</a></li>
+									<li><a class="next page-numbers" href="404.html"><span
+											aria-label="Next"><i class="fa fa-angle-right"></i></span></a></li>
+								</ul>
+							</div>
+							<!--// Pagination \\-->
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!--// Main Section \\-->
+
+		</div>
+		<!--// Main Content \\-->
+	</div>
+
+	<th:block th:replace="~{layouts/master::footer}" />
+	<th:block th:include="~{layouts/master::js}" />
+</body>
+</html>
