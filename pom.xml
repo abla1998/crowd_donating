@@ -86,6 +86,7 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<filters>
 			<filter>src/main/resources/application.properties</filter>
